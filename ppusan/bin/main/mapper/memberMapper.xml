@@ -1,0 +1,20 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.ppusan.mapper.MemberMapper">
+
+	<!-- 회원정보 저장 -->
+	<insert id="insertMember" parameterType="member">
+    	insert into member (
+			memberId, password, nickname
+		) values (
+		#{memberId}, #{password}, #{nickname}
+		)
+	</insert>
+	
+	<select id="findMemberById" parameterType="string" resultType="member">
+    	select * from member where memberId = #{memberId}
+    </select>
+
+</mapper>

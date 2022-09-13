@@ -1,4 +1,4 @@
-package com.project.ppusan.Controller;
+package com.project.ppusan.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -24,8 +24,13 @@ public class WebSecurityConfig {
                 "/css/**",
                 "/js/**",
                 "/member/join",
+<<<<<<< HEAD
                 "/board/list",
                 "/weatherForecast").permitAll()
+=======
+                "/board/**",
+                "/api/**").permitAll()
+>>>>>>> refs/heads/main2
         .anyRequest().authenticated()
         .and()
         .formLogin()					
@@ -35,8 +40,7 @@ public class WebSecurityConfig {
 		.defaultSuccessUrl("/member/login-success")
 		// 인증에 실패했을 때 이동할 URL
 		.failureUrl("/member/login-fail")
-        .usernameParameter("memberid")
-        .passwordParameter("memberpw")
+        .usernameParameter("memberId")
         .and()
         .logout()
         .logoutUrl("/member/logout")

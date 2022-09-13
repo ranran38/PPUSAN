@@ -4,6 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
   <typeAliases>
+<<<<<<< HEAD
   	<typeAlias type="com.project.ppusan.domain.Clothes" alias="clothes"/>
+=======
+<<<<<<< HEAD
+  	<typeAlias type="com.project.ppusan.domain.Board" alias="board"/>
+=======
+  	<typeAlias type="com.project.ppusan.domain.Member" alias="member"/>
+>>>>>>> refs/heads/Sy01
+>>>>>>> refs/heads/main2
   </typeAliases>
 </configuration>

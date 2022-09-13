@@ -12,14 +12,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Board {
 	
-	String contentId;
-	long hit;
-	long like;
-	String contentTypeId;
-	String sigunguCode;
-	String addr;
-	String image;		//이미지 주소
-	String x;
-	String y;
-	String title;
+	String contentId;		//contentid
+	long hit;				//readcount
+	long likeCount;
+	String contentTypeId;	//contenttypeid
+	String sigunguCode;		//sigungucode
+	String addr;			//addr1 + addr2
+	String image;			//firstimage(null)
+	String x;				//mapx
+	String y;				//mapy
+	String title;			//title
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 arguments=
 auto.sync=false
 build.scans.enabled=false
@@ -11,3 +12,12 @@ offline.mode=false
 override.workspace.settings=false
 show.console.view=false
 show.executions.view=false
+=======
+<<<<<<< HEAD
+connection.project.dir=
+eclipse.preferences.version=1
+=======
+connection.project.dir=
+eclipse.preferences.version=1
+>>>>>>> refs/heads/Sy01
+>>>>>>> refs/heads/main2
