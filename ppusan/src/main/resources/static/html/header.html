@@ -23,11 +23,23 @@
     	});
 */
     </script>
+    <script>
+		$.getJSON('https://api.openweathermap.org/data/2.5/weather?q=Busan&appid=a8de4fd1ab71d6342364fd6cc7e9ec07&units=metric', function(result) {
+			$('.nowtemp').append(result.main.temp + " °C");
+			
+			var iconURL = '<img src="http://openweathermap.org/img/wn/' + result.weather[0].icon + '.png" alt="' + result.weather[0].description + '">'
+			$('.icon').html(iconURL);
+			
+		})
+	</script>
 </head>
 <body>
   	<div class="block">&nbsp;</div>
     <div>
-    	<a href="/forecast" id="forecast">forecast</a>
+    	<a href="/forecast" id="forecast">
+			<span class="icon"></span>
+			<span class="nowtemp"></span>
+		</a>
     </div>
    		<nav class="dropmenu">
    		<ul>

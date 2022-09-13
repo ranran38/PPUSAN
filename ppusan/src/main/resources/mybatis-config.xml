@@ -5,6 +5,6 @@
 <configuration>
   <typeAliases>
   	<typeAlias type="com.project.ppusan.domain.Board" alias="board"/>
-  	<typeAlias type="com.project.ppusan.domain.Member" alias="member"/>
+  	<typeAlias type="com.project.ppusan.domain.Clothes" alias="clothes"/>
   </typeAliases>
 </configuration>
