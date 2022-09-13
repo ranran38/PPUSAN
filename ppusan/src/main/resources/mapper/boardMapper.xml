@@ -29,4 +29,24 @@
 	)
 </insert>
 
+<select id="getTotal" resultType="int" parameterType="string">
+	select count(*) from board where contentTypeId=#{contentTypeId}
+</select>
+
+<select id="getTotalBySigunguCode" resultType="int" parameterType="map">
+	select count(*) from board 
+	where contentTypeId=#{contentTypeId}
+			and sigunguCode=#{sigunguCode}
+</select>
+
+<select id="findBoardsByContentTypeId" parameterType="string" resultType="board">
+	select * from board 
+	where contentTypeId=#{contentTypeId}
+</select>
+
+<select id="findBoardsBySigunguCode" parameterType="string" resultType="board">
+	select * from board 
+	where contentTypeId=#{contentTypeId}
+		and sigunguCode=#{sigunguCode}
+</select>
 </mapper>
