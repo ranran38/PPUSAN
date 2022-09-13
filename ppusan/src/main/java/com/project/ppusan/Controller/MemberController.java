@@ -28,21 +28,22 @@ public class MemberController {
     
     private final MemberService memberService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     
     // 회원가입 폼
     @GetMapping(value = "/join")
     public String joinForm(Model model) {
-//    	model.addAttribute("FormData", new FormData());
-    	return "member/join";
+//       model.addAttribute("FormData", new FormData());
+       return "member/join";
     }
 
     @PostMapping(value = "/join")
     public String join(Member member) {
-//		log.info("member : {}", formData);
-    	member.setPassword(bCryptPasswordEncoder.encode(member.getPassword()));
+//      log.info("member : {}", formData);
+       member.setPassword(bCryptPasswordEncoder.encode(member.getPassword()));
         member.setMemberId(member.getMemberId() + "@" + member.getEmailAddress());
-    	memberService.insertMember(member);
-    	return "redirect:/";
+       memberService.insertMember(member);
+       return "redirect:/";
     }
     
     // 로그인 폼
@@ -56,7 +57,7 @@ public class MemberController {
     public String login_success(@AuthenticationPrincipal UserInfo userInfo, Model model) {
         log.info("userInfo : {}", userInfo);
         log.info("userInfo : {}", userInfo.getUsername());
-		model.addAttribute("longinMemeber", userInfo.getMember());
+      model.addAttribute("longinMemeber", userInfo.getMember());
         return "redirect:/";
     }
 

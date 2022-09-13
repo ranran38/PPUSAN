@@ -10,10 +10,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class MemberService {
-	private final MemberMapper memberMapper;
-	
-	public void insertMember(Member member) {
-		memberMapper.insertMember(member);
-	}
-	
+   private final MemberMapper memberMapper;
+   
+   public void insertMember(Member member) {
+      memberMapper.insertMember(member);
+   }
+   
 }

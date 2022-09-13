@@ -5,11 +5,27 @@
     <title>detail</title>
     <link rel="stylesheet" href="/css/default.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <script type="text/javascript">  
 	$(function() {
 		$("#sub").load("/html/subheader.html");
 		$("#footer").load("/html/footer.html");
 	});
+	
+	function addLike(){
+    const pushHeartBtn = document.querySelector(".heartBtn");
+            pushHeartBtn.innerHTML ='<i class="xi-heart xi-2x"></i>';
+            pushHeartBtn.style.color ='red'; 
+}
+
+        function pushHeart(){
+            if(likeBtn !== 0){
+                likeBtn.innerHTML='<i class="xi-heart"></i>';
+                likeBtn.style.color ='red';
+            }else{
+                likeBtn.innerHTML='';
+            }
+        }   
 </script> 
 </head>
 <body>
@@ -54,6 +70,8 @@
 					<div class="picture"><a href="#"></a></div>
 					<div class="place"><a href="#">장소명</a></div>
 					<div class="address"><a href="#">주소</a></div>
+					<button class="heartBtn" th:onclick="addLike()">
+					<i class=" xi-heart-o xi-2x"></i></button>
 				</div>
 				<div class="box"><a href="#"></a>
 					<div class="picture"><a href="#"></a></div>
