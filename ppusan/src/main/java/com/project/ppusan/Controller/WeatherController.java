@@ -24,6 +24,6 @@ public class WeatherController {
 		List<Clothes> clothes = weatherservice.getList();
 		log.info("{}",clothes);
         model.addAttribute("clothes", clothes);
-		return "/weatherForecast";
+		return "weather/weatherForecast";
 	}
 }
