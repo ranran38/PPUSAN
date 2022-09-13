@@ -15,11 +15,12 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class UserService implements UserDetailsService {
 	
-	private final MemberMapper memberDAO;
+	private final MemberMapper memberMapper;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Member member = memberDAO.findMemberById(username);
+		Member member = memberMapper.findMemberById(username);
+		System.out.println("username : "+username);
 		if (member != null) {
 			return new UserInfo(member);
 		}

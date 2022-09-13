@@ -9,6 +9,6 @@ import com.project.ppusan.domain.Member;
  */
 @Mapper
 public interface MemberMapper {
-	public void insertMember(Member member);
+	public int insertMember(Member member);
 	public Member findMemberById(String username);
 }
