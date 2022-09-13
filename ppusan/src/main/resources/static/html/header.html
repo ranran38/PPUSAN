@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>header</title>
+   <link rel="stylesheet" href="/css/default.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+ /*   	
+    	$(function(){
+    		$(".current").hover(){
+    			let str = "";
+    			str += "<ul>";
+		   		str += 	"<li><a href='#'>전체</a></li>";
+		   		str += 	"<li><a href='#'>기장군</a></li>";
+		   		str += 	"<li><a href='#'>동구</a></li>";
+		   		str += 	"<li><a href='#'>중구</a></li>";
+		   		str += 	"<li><a href='#'>부산진구</a></li>";
+		   		str += 	"<li><a href='#'>해운대구</a></li>";
+	   			str += "</ul>";
+    			$("#tmp").append(str);
+    		};
+    	});
+*/
+    </script>
+</head>
+<body>
+  	<div class="block">&nbsp;</div>
+    <div>
+    	<a href="/forecast" id="forecast">forecast</a>
+    </div>
+   		<nav class="dropmenu">
+   		<ul>
+   			<li><a href="/board/list/spot" class="current">관광지</a>
+   			<div id="tmp"></div>
+	   			<ul>
+		   			<li><a href="/board/list/spot">전체</a></li>
+		   			<li><a href="/board/list/spot?sigungu=gijang">기장군</a></li>
+		   			<li><a href="/board/list/spot?sigungu=dong">동구</a></li>
+		   			<li><a href="/board/list/spot?sigungu=jung">중구</a></li>
+		   			<li><a href="/board/list/spot?sigungu=jin">부산진구</a></li>
+		   			<li><a href="/board/list/spot?sigungu=haeundae">해운대구</a></li>
+	   			</ul>
+	   		</li>
+   			<li><a href="/board/list/leports" class="current">레포츠</a>
+   				<ul>
+		   			<li><a href="/board/list/leports">전체</a></li>
+		   			<li><a href="/board/list/leports?sigungu=gijang">기장군</a></li>
+		   			<li><a href="/board/list/leports?sigungu=dong">동구</a></li>
+		   			<li><a href="/board/list/leports?sigungu=jung">중구</a></li>
+		   			<li><a href="/board/list/leports?sigungu=jin">부산진구</a></li>
+		   			<li><a href="/board/list/leports?sigungu=haeundae">해운대구</a></li>
+	   			</ul>
+	   		</li>
+   			<li><a href="/board/list/food" class="current">맛집</a>
+   				<ul>
+		   			<li><a href="/board/list/food">전체</a></li>
+		   			<li><a href="/board/list/food?sigungu=gijang">기장군</a></li>
+		   			<li><a href="/board/list/food?sigungu=dong">동구</a></li>
+		   			<li><a href="/board/list/food?sigungu=jung">중구</a></li>
+		   			<li><a href="/board/list/food?sigungu=jin">부산진구</a></li>
+		   			<li><a href="/board/list/food?sigungu=haeundae">해운대구</a></li>
+	   			</ul>
+	   		</li>
+   			<li><a href="/board/list/stay" class="current">숙박</a>
+   				<ul>
+		   			<li><a href="/board/list/stay">전체</a></li>
+		   			<li><a href="/board/list/stay?sigungu=gijang">기장군</a></li>
+		   			<li><a href="/board/list/stay?sigungu=dong">동구</a></li>
+		   			<li><a href="/board/list/stay?sigungu=jung">중구</a></li>
+		   			<li><a href="/board/list/stay?sigungu=jin">부산진구</a></li>
+		   			<li><a href="/board/list/stay?sigungu=haeundae">해운대구</a></li>
+	   			</ul>
+	   		</li>
+   			<li><a href="/board/list/about" class="current">about부산</a>
+			</ul>
+ 		</nav>
+ 	<div>	
+    	<a href="member/login" id="login">로그인/회원가입</a>
+    </div>
+    <div class="block">&nbsp;</div>
+</body>
+</html>

@@ -13,4 +13,9 @@ public class MainController {
 	public String home() {
 		return "/main";
 	}
+	
+	@GetMapping({"detail"})
+	public String detail() {
+		return "/detail";
+	}	
 }
