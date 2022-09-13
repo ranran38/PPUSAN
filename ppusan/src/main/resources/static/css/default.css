@@ -306,6 +306,11 @@ body {
 	background-color: rgb(14, 69, 122);
 }
 
+.suggestBox a {
+	color:white;
+	text-decoration: none;
+}
+
 footer {
 	padding: 10px 0;
 	background-color: rgb(14, 69, 122);
