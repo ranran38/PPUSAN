@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/weatherCss.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
+
+</head>
+<body>
+	
+	<table class="maintable">
+		<thead class="mainhead">
+			<tr>
+				<th>날씨</th>
+				<th>시간</th>
+				<th>최저기온</th>
+				<th>최고기온</th>
+			</tr>
+		</thead>
+		<tbody class="mainbody">
+			<!-- <tr>
+				<td>현재 시간</td>
+				<td>현재 온도</td>
+			</tr> -->
+			<!-- <tr>
+				<td>
+					<button type="button" id="modal_btn">복장추천</button>
+					<div class="modal_background"></div>
+					<div class="modal_wrap">
+				   		<div class="modal_close"><img class="closeImg" src="https://w7.pngwing.com/pngs/512/877/png-transparent-close-exit-stop-button-icon-thumbnail.png" alt="x버튼"></div>
+				   		<div class="text">
+					        스틱코드에서 개발에 필요한 모든 코드를 쉽게 사용하세요.
+					        https://stickode.com/mainlogin.html
+					    </div>
+					</div>
+				</td>
+			</tr> -->
+			
+		</tbody>
+	</table>
+					<div class="btn"><button type="button" id="modal_btn">복장추천</button></div>
+					<div class="modal_background"></div>
+					<div class="modal_wrap">
+				   		<div class="modal_close"><img class="closeImg" src="https://w7.pngwing.com/pngs/512/877/png-transparent-close-exit-stop-button-icon-thumbnail.png" alt="x버튼"></div>
+					    상세 날씨 및 복장 추천
+				   		<input type="hidden" id="test" readonly="readonly">
+				   		<select id="selectbox" name="selectbox">
+							<option value="">날짜를 선택하세요</option>              
+							<option value="1">1일째</option>
+							<option value="2">2일째</option>
+							<option value="3">3일째</option>
+							<option value="4">4일째</option>
+							<option value="5">5일째</option>
+							<option value="6">6일째</option>
+						</select>
+				   		<div class="text">
+				   		<table class="modaltable"><thead class="head"></thead><tbody class="body"></tbody></table>
+					    </div>
+					    <div class="clothesPick">
+					   		<!-- <tr th:each="cloth : ${clothes}">
+					   		<div th:if="${cloth.maxT} >  ${cloth.minT}">
+				            	<td th:text="${cloth.solution}"></td> -->
+				            	<div id="data1"></div>
+				            	<div id="data2"></div>
+				            	<!-- <img alt="clothes" src="/image/0~5.PNG"> -->
+				            <!--</div>
+				            </tr> -->
+				        </div>
+					</div>
+	
+			
+	<script>
+		$.getJSON('https://api.openweathermap.org/data/2.5/forecast?q=Busan&appid=a8de4fd1ab71d6342364fd6cc7e9ec07&units=metric', function(result) {
+			var arr = [];
+			var uniarr;
+			var i;
+			var key;
+			var keyarr = [];
+			var dcount;
+			
+			var thHtml = '<tr>' +
+										'<th>' + '날씨' + '</th>' +									
+										'<th>' + '시간' + '</th>' +									
+										'<th>' + '온도' + '</th>' +
+										'<th>' + '강우확률' + '</th>' +
+										'<th>' + '바람' + '</th>' +
+										'<th>' + '습도' + '</th>' +
+										'<th>' + '강수량' + '</th>' +
+									'</tr>';
+					$('.head').append(thHtml); 
+					
+			$(document).ready(function() {
+				$("#selectbox").change(function () {
+					$("#selectbox").remove();
+					$("#test").remove();
+					console.log("sss" + $(this).val());
+					$("#test").val($(this).val());
+			//상세날씨
+					
+					
+					outer : for(i = 0; i < 40; i++) {
+						
+						var ntime = result.list[i].dt;
+						var ntemp = result.list[i].main.temp;
+						var iconURL = '<img src="http://openweathermap.org/img/wn/' + result.list[i].weather[0].icon + '.png" alt="' + result.list[i].weather[0].description + '">';
+						var rainpop = Math.ceil(result.list[i].pop * 1000) / 10;
+						var nwind = result.list[i].wind.speed;
+						var nhum = result.list[i].main.humidity;
+						
+						// 비 올 경우와 안 올 경우 강수량  
+						var checkrain = result.list[i].weather[0].main;
+						if (checkrain == "Rain") {
+							var nrain = result.list[i].rain;
+							var rain = nrain["3h"];
+						} else {
+							var rain = 0;
+						}
+							
+							// 날짜 간단히 설정 (00일-00시)
+							function changeTime(t) {
+								var ot = new Date(t * 1000);
+								var m = ot.getMonth() + 1;
+								var d = ot.getDate();
+								var h = ot.getHours();
+								
+								return m+'월'+d+'일-'+h+'시';
+							}
+							var nowTime = changeTime(ntime);
+							
+							var day = nowTime.split('-');
+							var time = nowTime.split('-');
+							console.log(day[0]);
+							
+							
+							var clothesPick;
+							var solution;
+							
+							if (day[0] == uniarr[$(this).val() -1]  && time[1] == "21시") {
+								//21시 기준으로하기 > 앞에서 변수설정, 하루동안 최소 최대 구하기 > 배열에 담기 > 
+								var cartList2 = '[[${clothes}]]';
+								console.log(cartList2);
+								/* console.log(cartList2.indexOf("방한용품"));
+								console.log(cartList2.substring(1215,1224)); */
+								
+								
+								/* var clothesPick = '<td><img alt="clothes" src="/image/-5.png"></td>'; */
+								console.log(ntemp);
+								
+								if (ntemp < 0) {
+									clothesPick = '<td><img alt="clothes" src="/image/-5.png"></td>';
+									solution = cartList2.substring(1215,1224);
+								}
+								if (0 <= ntemp < 5) {
+									clothesPick = '<td><img alt="clothes" src="/image/0~5.PNG"></td>';
+									solution = cartList2.substring(1071,1088);
+								}
+								if (5 <= ntemp < 10) {
+									clothesPick = '<td><img alt="clothes" src="/image/6~9.PNG"></td>';
+									solution = cartList2.substring(926,946);
+								}
+								if (10 <= ntemp < 12) {
+									clothesPick = '<td><img alt="clothes" src="/image/10~11.PNG"></td>';
+									solution = cartList2.substring(781,799);
+								}
+								if (12 <= ntemp < 17) {
+									clothesPick = '<td><img alt="clothes" src="/image/12~16.PNG"></td>';
+									solution = cartList2.substring(637,653);
+								}
+								if (17 <= ntemp < 20) {
+									clothesPick = '<td><img alt="clothes" src="/image/17~19.PNG"></td>';
+									solution = cartList2.substring(489,508);
+								}
+								if (20 <= ntemp < 23) {
+									clothesPick = '<td><img alt="clothes" src="/image/20~22.PNG"></td>';
+									solution = cartList2.substring(340,360);
+								}
+								if (23 <= ntemp < 27) {
+									clothesPick = '<td><img alt="clothes" src="/image/23~26.png"></td>';
+									solution = cartList2.substring(192,211);
+								}
+								if (27 <= ntemp) {
+									clothesPick = '<td><img alt="clothes" src="/image/27.png"></td>';
+									solution = cartList2.substring(53,66);
+								}
+								
+								document.getElementById("data1").innerHTML = ntemp;
+								document.getElementById("data2").innerHTML = solution;
+								/* document.getElementById("data2").innerHTML = clothesPick; */
+								
+								$('.clothesPick').append(clothesPick);
+							}
+							
+							if (day[0] == uniarr[$(this).val() - 1]) {
+								for(var j = 0; j < keyarr[0]; j++) {
+									var tableHtml2 = '<tr>' +
+														'<td>' + iconURL + '</td>' +									
+														'<td>' + nowTime + '</td>' +									
+														'<td>' + ntemp + '</td>' +
+														'<td>' + rainpop + '%' + '</td>' +
+														'<td>' + nwind + 'm/s' + '</td>' +
+														'<td>' + nhum + '%' + '</td>' +
+														'<td>' + rain + 'mm' + '</td>' +
+													'</tr>';
+								}
+								$('.body').append(tableHtml2); 
+								if (time[1] == "21시" && keyarr[0] < i) {continue outer;}
+		/* 						if (time[1] == "21시" && keyarr[0] < i) {break outer;} */
+							}
+							
+					} 
+					
+							
+				})
+			})
+			
+			for(i = 0; i < 40; i++) {
+				var ntime = result.list[i].dt;
+				var iconURL = '<img src="http://openweathermap.org/img/wn/' + result.list[i].weather[0].icon + '.png" alt="' + result.list[i].weather[0].description + '">';
+				
+				var pod = result.list[i].sys.pod;
+				var tempmin = result.list[i].main.temp_min;
+				var tempmax = result.list[i].main.temp_max;
+				
+					// 날짜 간단히 설정 (00일-00시)
+					function changeTime(t) {
+						var ot = new Date(t * 1000);
+						var m = ot.getMonth() + 1;
+						var d = ot.getDate();
+						var h = ot.getHours();
+						
+						return m+'월'+d+'일-'+h+'시';
+					}
+					var nowTime = changeTime(ntime);
+					
+					var day = nowTime.split('-');
+					var time = nowTime.split('-');
+
+					
+					//중복된 날짜 배열에서 삭제
+					arr[i] = day[0];
+					uniarr = [...new Set(arr)];
+					
+					//오전오후 (6시와 18시 기준) 최고최저온도
+					if (pod == "d") {
+						if(time[1] == "6시" || time[1] == "18시") {
+							var icon = iconURL;
+							var min = tempmin;
+							var max = tempmax;
+						}
+						if (icon == null) {
+							var icon = iconURL;
+							var min = tempmin;
+							var max = tempmax;
+						}
+					}
+					if (pod == "n") {
+						if(time[1] == "6시" || time[1] == "18시") {
+							var icon = iconURL;
+							var min = tempmin;
+							var max = tempmax;
+						}
+						if (icon == null) {
+							var icon = iconURL;
+							var min = tempmin;
+							var max = tempmax;
+						}
+					}
+				
+				if (pod == "n") {
+					var ampm = "오전";
+				}
+				if (pod == "d") {
+					var ampm = "오후";
+				}
+				if (time[1] == "6시" || time[1] == "18시") {	
+							
+				var tableHtml = '<tr>' +
+									'<td>' + icon + '</td>' +									
+									'<td>' + day[0] + '<br>' + ampm + '</td>' +	
+									'<td>' + min + '</td>' +
+									'<td>' + max + '</td>' +
+								'</tr>';
+				
+				$('.mainbody').append(tableHtml);
+				}
+			}
+					dcount = arr.reduce((accu, curr) => { 
+						  /* console.log('accu',accu, 'curr', curr, accu[curr]) */
+						  accu[curr] = (accu[curr] || 0)+1; 
+						  return accu;
+					}, {});
+					
+					var keys = Object.keys(dcount); //키를 가져옵니다. 이때, keys 는 반복가능한 객체가 됩니다.
+				    for (var i=0; i<keys.length; i++) {
+				    	key = keys[i];
+				    	keyarr[i] = dcount[key];
+				    	console.log("key : " + key + ", value : " + dcount[key]);
+				    }
+					console.log(keyarr);
+
+					
+			
+		});
+		
+	</script>
+	
+	<script type="text/javascript">
+		// 모달 열기
+		function modalOpen() {
+		    document.querySelector('.modal_wrap').style.display = 'block';
+		    document.querySelector('.modal_background').style.display = 'block';
+		}
+	
+		// 모달 끄기
+		function modalClose() {
+		    document.querySelector('.modal_wrap').style.display = 'none';
+		    document.querySelector('.modal_background').style.display = 'none';
+		}
+	
+	
+		//버튼 클릭리스너 달기
+		document.querySelector('#modal_btn').addEventListener('click', modalOpen);
+		document.querySelector('.modal_close').addEventListener('click', modalClose);
+
+	</script>
+	
+</body>
+</html>
