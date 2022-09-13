@@ -111,7 +111,7 @@ body {
 	text-decoration: none;
 }
 
-button {
+.detailBtn {
 	border-radius: 20px;
 	background-color: aqua;
 	color: white;
@@ -123,11 +123,16 @@ button {
 	border-radius: 20px;
 	cursor: pointer;
 }
-button:focus {
+.detailBtn:focus {
 	background-color: #ED9C3B;
 	font-weight: bolder;
 	text-transform: capitalize;
 }
+
+.heartBtn {
+	
+}
+
 
 #spotlight {
 	color: rgb(0, 128, 255);
