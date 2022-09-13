@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.ppusan.mapper.WeatherMapper">
+	<!-- <select id="findClothesById" parameterType="double" resultType="clothes">
+		select * from clothes where maxT >= #{temp} >= minT
+	</select>
+	
+	<select id="findImageById" parameterType="int" resultType="clothes">
+		select * from image where clothesId = #{clothesId}
+	</select> -->
+	
+	<select id="getList" resultType="clothes">
+		select * from clothes order by clothesId desc
+	</select> 
+	
+</mapper>
