@@ -1,0 +1,112 @@
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 95vh;
+    width: 95vw;
+	background-image: url('https://img.freepik.com/free-photo/white-cloud-on-blue-sky-and-sea_74190-4488.jpg?size=626&ext=jpg');
+	background-repeat : no-repeat;
+    background-size : cover;
+	background-color: skyblue;
+	font-size: 20px;
+}
+
+table {
+	width: 575px; height:500px;
+	margin: auto;
+	border-collapse: collapse;
+	background-color: skyblue;
+	opacity:0.7;
+	/* display:flex;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	overflow-x: auto;
+	overflow-y: hidden; */
+}
+
+/* tbody {
+	display:flex;
+} */
+
+td {
+	/* display:block; */
+	text-align: center;
+	border: 2px solid pink;
+	padding: 5px;
+}
+
+th {
+	/* display:block; */
+	background-color: #8080ff;
+	border: 2px solid pink;
+	position: sticky;
+  	top: 0;
+	text-align: center;
+	padding: 5px;
+}
+
+.scrolltable {
+	display: block;
+    overflow: auto;
+}
+
+.clothesPick img {
+	width: 100%;
+    height: 100%;
+}
+
+#modal_btn {
+    width: 50px;
+    height: 50px;
+    right: 50%;
+    width:fit-content;
+    margin:auto;
+}
+.btn {
+   margin:auto;
+}
+
+.modal_wrap {
+    display: none;
+    width: 40%;
+    height: 90%;
+    overflow-y: auto;
+    position: absolute;
+    border: 2px solid black;
+    top:43%;
+    left: 78%;
+    margin: -250px 0 0 -250px;
+    background:#eee;
+    z-index: 2;
+}
+.modal_background {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 110%;
+    background-color:rgba(0, 0,0, 0.6);
+    top:0;
+    left: 0;
+    z-index: 1;
+}
+.modal_close {
+    width: 26px;
+    height: 26px;
+    position: fixed;
+    top: 8%;
+    right: 3%;
+}
+
+.modal_wrap .text {
+	display:flex;
+    margin-top: 45px;
+    margin-left: 5px;
+    font-size: 18px;
+    overflow-y: initial !important
+}
+
+.modal_close .closeImg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
