@@ -1,5 +1,9 @@
 package com.project.ppusan.service;
 
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +21,25 @@ public class BoardService {
 	
 	public void insertBoard(Board board) {
 		boardMapper.insertBoard(board);
+	}
+	
+	//카테고리별 총계
+	public int getTotal(String contentTypeId) {
+		return boardMapper.getTotal(contentTypeId);
+	}
+	
+	public int getTotalBySigunguCode(HashMap<String,String> map) {
+		return boardMapper.getTotalBySigunguCode(map);
+	}
+	
+	public List<Board> findBoardsByContentTypeId(String contentTypeId, int startRecord, int countPerPage){
+		RowBounds rb = new RowBounds(startRecord, countPerPage);
+		return boardMapper.findBoardsByContentTypeId(contentTypeId, rb);
+	}
+	
+	public List<Board> findBoardsBySigunguCode(HashMap<String,String> map, int startRecord, int countPerPage){
+		RowBounds rb = new RowBounds(startRecord, countPerPage);
+		return boardMapper.findBoardsBySigunguCode(map, rb);
 	}
     
 }

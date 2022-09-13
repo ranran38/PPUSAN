@@ -1,6 +1,10 @@
 package com.project.ppusan.mapper;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.session.RowBounds;
 
 import com.project.ppusan.domain.Board;
 
@@ -10,5 +14,8 @@ import com.project.ppusan.domain.Board;
 @Mapper
 public interface BoardMapper {
 	public void insertBoard(Board board);
-	
+	public int getTotal(String contentTypeId);
+	public int getTotalBySigunguCode(HashMap<String,String> map);
+	public List<Board> findBoardsByContentTypeId(String contentTypeId, RowBounds rb);
+	public List<Board> findBoardsBySigunguCode(HashMap<String,String> map, RowBounds rb);
 }

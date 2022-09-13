@@ -5,27 +5,15 @@
     <title>detail</title>
     <link rel="stylesheet" href="/css/default.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <script type="text/javascript">  
 	$(function() {
 		$("#sub").load("/html/subheader.html");
 		$("#footer").load("/html/footer.html");
+		
+		$(".box").click(function(){
+			alert("박스선택");
+		});
 	});
-	
-	function addLike(){
-    const pushHeartBtn = document.querySelector(".heartBtn");
-            pushHeartBtn.innerHTML ='<i class="xi-heart xi-2x"></i>';
-            pushHeartBtn.style.color ='red'; 
-}
-
-        function pushHeart(){
-            if(likeBtn !== 0){
-                likeBtn.innerHTML='<i class="xi-heart"></i>';
-                likeBtn.style.color ='red';
-            }else{
-                likeBtn.innerHTML='';
-            }
-        }   
 </script> 
 </head>
 <body>
@@ -59,63 +47,38 @@
 				<h3 class="list">게시물 목록</h3>
 				<div class="page">
 					<ul class="pagination modal">
-						<li><a href="#" class="arrow left"><<</a></li>
-						<li><a href="#" class="active num">1</a></li>
-						<li><a href="#" class="num">2</a></li>
-						<li><a href="#" class="num">3</a></li>
-						<li><a href="#" class="arrow right">>></a></li>
+						<li><a th:href="|/board/list/${category}?page=${navi.currentPage - navi.pagePerGroup}|" class="arrow left"><<</a></li>
+						<th:block th:if="${navi.endPageGroup eq 0}">
+                			<li><a class="num" th:href="@{/board/list(page=${1})}" th:class="bold" th:text="${1}"></a></li>
+            			</th:block>
+            			<th:block th:if="${navi.endPageGroup ne 0}">
+                			<th:block th:each="counter : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
+                   				<span th:if="${counter eq navi.currentPage}">
+                        			<li><a class="num" th:href="|/board/list/${category}?page=${counter}|" th:text="${counter}"></a></li>
+                    			</span>
+                    			<span th:unless="${counter eq navi.currentPage}">
+                        			<li><a class="num" th:href="|/board/list/${category}?page=${counter}|" th:class="bold" th:text="${counter}"></a></li>
+                    			</span>
+                			</th:block>
+            			</th:block>
+						<li><a th:href="|/board/list/${category}?page=${navi.currentPage + navi.pagePerGroup}|" class="arrow right">>></a></li>
 					</ul>
 				</div>
-				<div class="box"><a href="#"></a>
-					<div class="picture"><a href="#"></a></div>
-					<div class="place"><a href="#">장소명</a></div>
-					<div class="address"><a href="#">주소</a></div>
-					<button class="heartBtn" th:onclick="addLike()">
-					<i class=" xi-heart-o xi-2x"></i></button>
-				</div>
-				<div class="box"><a href="#"></a>
-					<div class="picture"><a href="#"></a></div>
-					<div class="place"><a href="#">장소명</a></div>
-					<div class="address"><a href="#">주소</a></div>
-				</div>
-				<div class="box"><a href="#"></a>
-					<div class="picture"><a href="#"></a></div>
-					<div class="place"><a href="#">장소명</a></div>
-					<div class="address"><a href="#">주소</a></div>
-				</div>
-				<div class="box"><a href="#"></a>
-					<div class="picture"><a href="#"></a></div>
-					<div class="place"><a href="#">장소명</a></div>
-					<div class="address"><a href="#">주소</a></div>
-				</div>
-				<div class="box"><a href="#"></a>
-					<div class="picture"><a href="#"></a></div>
-					<div class="place"><a href="#">장소명</a></div>
-					<div class="address"><a href="#">주소</a></div>
-				</div>
-				<div class="box"><a href="#"></a>
-					<div class="picture"><a href="#"></a></div>
-					<div class="place"><a href="#">장소명</a></div>
-					<div class="address"><a href="#">주소</a></div>
-				</div>
-				<div class="box"><a href="#"></a>
-					<div class="picture"><a href="#"></a></div>
-					<div class="place"><a href="#">장소명</a></div>
-					<div class="address"><a href="#">주소</a></div>
-				</div>
-				<div class="box"><a href="#"></a>
-					<div class="picture"><a href="#"></a></div>
-					<div class="place"><a href="#">장소명</a></div>
-					<div class="address"><a href="#">주소</a></div>
-				</div>
-				<div class="box"><a href="#"></a>
-					<div class="picture"><a href="#"></a></div>
-					<div class="place"><a href="#">장소명</a></div>
-					<div class="address"><a href="#">주소</a></div>
-				</div>																																				
+				
+				<th:text th:each="board : ${boards}">
+					<div class="box" >
+						<div class="picture">
+							<img th:unless="${board.image}==null" th:src="${board.image}">
+							<img th:if="${board.image}==null" src="https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg" height="150px">
+						</div>
+						<div class="place">[[${board.title}]]</div>
+						<div class="address">[[${board.addr}]]</div>
+					</div>
+				</th:text>
+																																		
 			</article>
 			<div class="upperbtn">
-				<a href="#content"><img src="image/upperBtn.png" width="5%"></a>
+				<a href="#content"><img src="/image/upperBtn.png" width="5%"></a>
 			</div>
 		</section>
 	<footer>
