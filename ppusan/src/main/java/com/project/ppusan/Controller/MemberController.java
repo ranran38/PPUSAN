@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import com.project.ppusan.domain.Member;
 import com.project.ppusan.security.UserInfo;
 import com.project.ppusan.service.MemberService;
 
@@ -29,6 +30,21 @@ public class MemberController {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     
+    // 회원가입 폼
+    @GetMapping(value = "/join")
+    public String joinForm(Model model) {
+//       model.addAttribute("FormData", new FormData());
+       return "member/join";
+    }
+
+    @PostMapping(value = "/join")
+    public String join(Member member) {
+//      log.info("member : {}", formData);
+       member.setPassword(bCryptPasswordEncoder.encode(member.getPassword()));
+        member.setMemberId(member.getMemberId() + "@" + member.getEmailAddress());
+       memberService.insertMember(member);
+       return "redirect:/";
+    }
     
     // 로그인 폼
     @GetMapping(value = "/login")
@@ -38,9 +54,11 @@ public class MemberController {
 
     // 로그인 성공
     @GetMapping(value = "/login-success")
-    public String login_success(@AuthenticationPrincipal UserInfo userInfo) {
+    public String login_success(@AuthenticationPrincipal UserInfo userInfo, Model model) {
         log.info("userInfo : {}", userInfo);
-        return "/";
+        log.info("userInfo : {}", userInfo.getUsername());
+      model.addAttribute("longinMemeber", userInfo.getMember());
+        return "redirect:/";
     }
 
     // 로그인 실패
