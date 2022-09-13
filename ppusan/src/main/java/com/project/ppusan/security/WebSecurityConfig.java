@@ -23,9 +23,13 @@ public class WebSecurityConfig {
                 "/image/**",
                 "/css/**",
                 "/js/**",
+                "/html/**",
                 "/member/join",
                 "/board/**",
-                "/api/**").permitAll()
+                "/api/**",
+                "/main/**",
+                "/detail/**"
+        		).permitAll()
         .anyRequest().authenticated()
         .and()
         .formLogin()					

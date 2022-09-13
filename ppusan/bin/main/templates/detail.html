@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>detail</title>
+    <link rel="stylesheet" href="/css/default.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">  
+	$(function() {
+		$("#sub").load("/html/subheader.html");
+		$("#footer").load("/html/footer.html");
+	});
+</script> 
+</head>
+<body>
+<div id="wrap">
+	<div id="sub"></div>
+	<div id="content">
+		<section>
+			<article>
+			    <div class="category">
+			    	<a href="/board">전체게시판</a>
+			    	<span>></span>
+			    	<a href="/board/list">부산여행지</a>
+			    	<span>></span>
+			    	<a href="/board/list/spot">전체</a>
+			    </div>
+				<div class="sigungu">
+					<a href="/board/list/spot">전체</a>
+					<span>|</span>
+					<a href="/board/list/spot?sigungu=gijang">기장군</a>
+					<span>|</span>
+					<a href="/board/list/spot?sigungu=dong">동구</a>
+					<span>|</span>
+					<a href="/board/list/spot?sigungu=jung">중구</a>
+					<span>|</span>
+					<a href="/board/list/spot?sigungu=jin">부산진구</a>
+					<span>|</span>
+					<a href="/board/list/spot?sigungu=haeundae">해운대구</a>
+				</div>
+			</article>
+			<article id="list">
+				<h3 class="list">게시물 목록</h3>
+				<div class="page">
+					<ul class="pagination modal">
+						<li><a href="#" class="arrow left"><<</a></li>
+						<li><a href="#" class="active num">1</a></li>
+						<li><a href="#" class="num">2</a></li>
+						<li><a href="#" class="num">3</a></li>
+						<li><a href="#" class="arrow right">>></a></li>
+					</ul>
+				</div>
+				<div class="box"><a href="#"></a>
+					<div class="picture"><a href="#"></a></div>
+					<div class="place"><a href="#">장소명</a></div>
+					<div class="address"><a href="#">주소</a></div>
+				</div>
+				<div class="box"><a href="#"></a>
+					<div class="picture"><a href="#"></a></div>
+					<div class="place"><a href="#">장소명</a></div>
+					<div class="address"><a href="#">주소</a></div>
+				</div>
+				<div class="box"><a href="#"></a>
+					<div class="picture"><a href="#"></a></div>
+					<div class="place"><a href="#">장소명</a></div>
+					<div class="address"><a href="#">주소</a></div>
+				</div>
+				<div class="box"><a href="#"></a>
+					<div class="picture"><a href="#"></a></div>
+					<div class="place"><a href="#">장소명</a></div>
+					<div class="address"><a href="#">주소</a></div>
+				</div>
+				<div class="box"><a href="#"></a>
+					<div class="picture"><a href="#"></a></div>
+					<div class="place"><a href="#">장소명</a></div>
+					<div class="address"><a href="#">주소</a></div>
+				</div>
+				<div class="box"><a href="#"></a>
+					<div class="picture"><a href="#"></a></div>
+					<div class="place"><a href="#">장소명</a></div>
+					<div class="address"><a href="#">주소</a></div>
+				</div>
+				<div class="box"><a href="#"></a>
+					<div class="picture"><a href="#"></a></div>
+					<div class="place"><a href="#">장소명</a></div>
+					<div class="address"><a href="#">주소</a></div>
+				</div>
+				<div class="box"><a href="#"></a>
+					<div class="picture"><a href="#"></a></div>
+					<div class="place"><a href="#">장소명</a></div>
+					<div class="address"><a href="#">주소</a></div>
+				</div>
+				<div class="box"><a href="#"></a>
+					<div class="picture"><a href="#"></a></div>
+					<div class="place"><a href="#">장소명</a></div>
+					<div class="address"><a href="#">주소</a></div>
+				</div>																																				
+			</article>
+			<div class="upperbtn">
+				<a href="#content"><img src="image/upperBtn.png" width="5%"></a>
+			</div>
+		</section>
+	<footer>
+		<div id="footer"></div>
+	</footer>
+	</div>
+</div>
+</body>
+</html>

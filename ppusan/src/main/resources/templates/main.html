@@ -5,109 +5,55 @@
     <title>PPUSAN</title>
     <link rel="stylesheet" href="/css/default.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
- /*   	
-    	$(function(){
-    		$(".current").hover(){
-    			let str = "";
-    			str += "<ul>";
-		   		str += 	"<li><a href='#'>전체</a></li>";
-		   		str += 	"<li><a href='#'>기장군</a></li>";
-		   		str += 	"<li><a href='#'>동구</a></li>";
-		   		str += 	"<li><a href='#'>중구</a></li>";
-		   		str += 	"<li><a href='#'>부산진구</a></li>";
-		   		str += 	"<li><a href='#'>해운대구</a></li>";
-	   			str += "</ul>";
-    			$("#tmp").append(str);
-    		};
-    	});
-*/
-    </script>
+<script type="text/javascript">  
+	$(function() {
+		$("#header").load("/html/header.html");
+		$("#footer").load("/html/footer.html");
+	});
+</script> 
 </head>
 <body>
   <div id="wrap">
-  	<div class="block">&nbsp;</div>
-    <div>
-    	<a href="#" id="forecast">forecast</a>
-    </div>
-   	<nav id="header" class="dropmenu">
-   		<ul>
-   			<li><a href="#" class="current">관광지</a>
-   			<div id="tmp"></div>
-	   			<ul>
-		   			<li><a href="#">전체</a></li>
-		   			<li><a href="#">기장군</a></li>
-		   			<li><a href="#">동구</a></li>
-		   			<li><a href="#">중구</a></li>
-		   			<li><a href="#">부산진구</a></li>
-		   			<li><a href="#">해운대구</a></li>
-	   			</ul>
-	   		</li>
-   			<li><a href="#" class="current">레포츠</a>
-   				<ul>
-		   			<li><a href="#">전체</a></li>
-		   			<li><a href="#">기장군</a></li>
-		   			<li><a href="#">동구</a></li>
-		   			<li><a href="#">중구</a></li>
-		   			<li><a href="#">부산진구</a></li>
-		   			<li><a href="#">해운대구</a></li>
-	   			</ul>
-	   		</li>
-   			<li><a href="#" class="current">맛집</a>
-   				<ul>
-		   			<li><a href="#">전체</a></li>
-		   			<li><a href="#">기장군</a></li>
-		   			<li><a href="#">동구</a></li>
-		   			<li><a href="#">중구</a></li>
-		   			<li><a href="#">부산진구</a></li>
-		   			<li><a href="#">해운대구</a></li>
-	   			</ul>
-	   		</li>
-   			<li><a href="#" class="current">숙박</a>
-   				<ul>
-		   			<li><a href="#">전체</a></li>
-		   			<li><a href="#">기장군</a></li>
-		   			<li><a href="#">동구</a></li>
-		   			<li><a href="#">중구</a></li>
-		   			<li><a href="#">부산진구</a></li>
-		   			<li><a href="#">해운대구</a></li>
-	   			</ul>
-	   		</li>
-   			<li><a href="#" class="current">about부산</a>
-			</ul>
- 		</nav>
- 	<div>	
-    	<a href="#" id="login">로그인/회원가입</a>
-    </div>
-    <div class="block">&nbsp;</div>
+  	<div id="header"></div>
     <div id="content">
 		<section>
 			<article>
 		    	<img src="image/mainpage.png" width="100%">
-				<button type="submit">find out more!</button>
+				<button type="submit" th:onclick="location.href='/detail'">>find out more!</button>
 				<p><br>
 			</article>
-			<article id="like">
+			<article id="content2">
 				<h3 id="spotlight">Spotlight</h3>
-				<div class="box"><a href="#">1번째</a></div>
-				<div class="box"><a href="#">2번째</a></div>
-				<div class="box"><a href="#">3번째</a></div>
+				<div class="box"><a href="#"></a>
+					<div class="picture"><a href="#"></a></div>
+					<div class="place"><a href="#">장소명</a></div>
+					<div class="address"><a href="#">주소</a></div>
+				</div>
+				<div class="box"><a href="#"></a>
+					<div class="picture"><a href="#"></a></div>
+					<div class="place"><a href="#">장소명</a></div>
+					<div class="address"><a href="#">주소</a></div>
+				</div>
+				<div class="box"><a href="#"></a>
+					<div class="picture"><a href="#"></a></div>
+					<div class="place"><a href="#">장소명</a></div>
+					<div class="address"><a href="#">주소</a></div>
+				</div>		
 				<div>
-					<img src="image/leftBtn.png" width="2%" id="leftbtn">
-					<img src="image/rightBtn.png" width="2%" id="rightbtn">
+					<a href="#"><img src="image/left-arrow.png" id="left-arrow"></a>
+					<a href="#"><img src="image/right-arrow.png" id="right-arrow"></a>
 				</div>
 			</article>
-			<article id="suggest">
+			<article id="content3">
 				<div class="suggestBox">
 					<h2>Suggest</h2>
 					<p>5일 간의 날씨 정보와 그 날에 맞는 옷을 추천해 드립니다.</p>
-					<p><a href="#"> -> find out more</a></p>
+					<p><a href="/forecast"> -> find out more</a></p>
 				</div>
 			</article>
 		</section>	
     <footer>
-    	<p>Copyright ⓒ. 2022. tabitatsuzo</p>
-		<p>All rights reserved.</p>   
+    	<div id="footer"></div>
 	</footer>
     </div>
 </div>
