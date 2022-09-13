@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {    
+	var emailSelect = document.getElementById("emailSelect");
+    emailSelect.addEventListener('change', emailChange);
+    var joinButton = document.getElementById("joinButton");
+    joinButton.addEventListener('click', checkValidation);
+	
+	function emailChange() {
+		var emailAddress = document.getElementById('emailAddress');
+		if (this.value == 'direct') {
+			if (emailAddress.readOnly == true) {
+				emailAddress.value = "";
+				emailAddress.readOnly = false;
+			}
+		} else {
+			switch (this.value) {
+				case "1":
+					emailAddress.value = "gmail.com";
+					break;
+				case "2":
+					emailAddress.value = "naver.com";
+					break;
+				case "3":
+					emailAddress.value = "daum.net";
+					break;
+			};		
+		}
+	}
+	function checkValidation() {
+		var joinForm = document.getElementById("joinForm");
+		var passwordFlg = passwordCheckIn();
+		var nameFlg = nameCheckIn();
+		var idFlg = idCheckIn();
+		if (!passwordFlg || !nameFlg || !idFlg) {
+			return;
+		}
+		alert(['#nickname'],"님을 환영입니다.<br> 메인페이지로 이동합니다.");
+		joinForm.submit();
+	}
+	
+	function idCheckIn() {
+		var memberId = document.getElementById("memberId");
+		var memberIdValidation = document.getElementById("memberIdValidation");
+		var idChecking = /^[a-zA-Z0-9]{8,50}$/;
+		if (memberId.value == "") {
+			memberIdValidation.textContent = "아이디를 입력하시오.";
+			memberIdValidation.style.color = "red";
+			return false;
+		} 
+		
+	/*	if (memberId.value != idChecking) {
+			memberIdValidation.textContent = "영문·숫자 그리고 8자이상 입력하십시오.";
+			memberIdValidation.style.color = "red";
+			return false;
+		}
+		*/
+		memberIdValidation.textContent = "";
+		return true;
+	}
+	
+	function passwordCheckIn() {
+		var password = document.getElementById("password");
+		var passwordConfirm = document.getElementById("passwordConfirm");
+		var pwChecking = /^[a-z0-9].{8,}^/;
+		if (password.value != passwordConfirm.value) {
+			var pwValidation = document.getElementById("pwValidation");
+			var pwConfirmValidation = document.getElementById("pwConfirmValidation");
+			pwValidation.textContent = "비밀번호가 서로 일치하지 않습니다.";
+			pwValidation.style.color = "red";
+			pwConfirmValidation.textContent = "비밀번호가 서로 일치하지 않습니다.";
+			pwConfirmValidation.style.color = "red";
+			return false;
+		}
+		
+		
+		
+		if (password.value == "") {
+			var pwValidation = document.getElementById("pwValidation");
+			pwValidation.textContent = "비밀번호를 입력하시오.";
+			pwValidation.style.color = "red";
+			return false;
+		}
+		
+		
+		if (passwordConfirm.value == "") {
+			var pwConfirmValidation = document.getElementById("pwConfirmValidation");
+			pwConfirmValidation.textContent = "비밀번호를 입력하시오.";
+			pwConfirmValidation.style.color = "red";
+			return false;
+		} 
+	/*	
+		if (password.value != pwChecking) {
+			var pwValidation = document.getElementById("pwValidation");
+			var pwConfirmValidation = document.getElementById("pwConfirmValidation");
+			pwValidation.textContent = ".";
+			pwValidation.style.color = "red";
+			pwConfirmValidation.textContent = "";
+			return false;
+			
+		} 
+	*/
+		return true;
+	}
+	
+	function nameCheckIn() {
+		var nickname = document.getElementById("nickname");
+		var nicknameValidation = document.getElementById("nicknameValidation");
+		if (nickname.value == "") {
+			nicknameValidation.textContent = "이름을 입력하시오.";
+			nicknameValidation.style.color = "red";
+			return false;
+		} else {
+			nicknameValidation.textContent = "";	
+			return true;
+		}
+	}
+	
+});	
+
+
+</script>
+</head>
+<body>
+	<h2>[ 회원가입 ]</h2>
+	<form id="joinForm" th:action="@{/member/join}" method="post">
+		<div>
+			<div id="member">
+				<label for="id">ID</label>
+				<input type="text" name="memberId" id="memberId">
+					<span>@</span>
+					<input type="text" name="emailAddress" id="emailAddress" readOnly>
+					<select name="emailSelect" id="emailSelect" style="width:100">
+					<option value="0">선택</option>
+					<option value="1">gmail.com</option>
+					<option value="2">naver.com</option>
+					<option value="3">daum.net</option>
+					<option value="direct">직접입력</option>
+					</select>
+				</div>
+				<span id="memberIdValidation"></span>
+			</div>
+			<div>
+				<label for="pw">비밀번호</label>
+				<input type="password" name="password" id="password"><br>
+				<span id="pwValidation"></span>
+			</div>
+			<div>
+				<label for="pw">비밀번호 확인</label>
+				<input type="password" name="passwordConfirm" id="passwordConfirm"><br>
+				<span id="pwConfirmValidation"></span>
+			</div>
+			<div>
+				<label for="name">이름</label>
+				<input type="text" name="nickname" id="nickname"><br>
+				<p><span id="nicknameValidation"></span>
+				<p>
+			</div>
+			<div>
+				<div>
+					<input type="button" id="joinButton" value="가입">
+					<input type="button" value="뒤로가기" th:onclick="|location.href='/'|">
+				</div>
+			</div>
+	</form>
+</body>
+</html>
