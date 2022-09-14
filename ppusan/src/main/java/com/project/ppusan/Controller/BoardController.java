@@ -91,7 +91,10 @@ public class BoardController {
 			model.addAttribute(model.addAttribute("navi", navi));
 			model.addAttribute("boards", boards);
 		}
+		model.addAttribute("korCategory",code.intoKor(category));
+		model.addAttribute("korSigungu",code.intoKor(sigungu));
 		model.addAttribute("category",category);
+		model.addAttribute("sigungu",sigungu);
 		return "/detail";
 	}
 }

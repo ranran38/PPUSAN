@@ -39,8 +39,30 @@ public class Code {
 		return sigungu.get(s);
 	}
 	
-	public String[] getContentTypeIdList(){
-		String[] contentTypeIdLists = {"12","39","32","28"};
-		return contentTypeIdLists;
+	public String intoKor(String string) {
+		String kor = null;
+		
+		if(string.equals("spot")) {
+			kor = "관광지";
+		}else if(string.equals("food")) {
+			kor = "맛집";
+		}else if(string.equals("stay")) {
+			kor = "숙박";
+		}else if(string.equals("leports")) {
+			kor = "레포츠";
+		}else if(string.equals("jin")) {
+			kor = "부산진구";
+		}else if(string.equals("gijang")) {
+			kor = "기장군";
+		}else if(string.equals("dong")) {
+			kor = "동구";
+		}else if(string.equals("jung")) {
+			kor = "중구";
+		}else if(string.equals("haeundae")) {
+			kor = "해운대구";
+		}else if(string.equals("all")) {
+			kor = "전체";
+		}
+		return kor;
 	}
 }
