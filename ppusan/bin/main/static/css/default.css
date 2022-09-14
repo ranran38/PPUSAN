@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 body {
 	background: rgb(241, 255, 254);
 	display: flex;
@@ -96,11 +97,13 @@ body {
     width: 1000px; 
     height: auto; 
 	background: #c8ffff; 
-    }    
+    }   
+
 
 .category {
 	text-align: left;
 	margin: 30px 30px 5px;
+	color: black;
 }
 
 .sigungu {
@@ -117,7 +120,7 @@ body {
 	text-decoration: none;
 }
 
-.detailBtn {
+.aboutPpusan {
 	border-radius: 20px;
 	background-color: aqua;
 	color: white;
@@ -129,7 +132,7 @@ body {
 	border-radius: 20px;
 	cursor: pointer;
 }
-.detailBtn:focus {
+.aboutPpusan:focus {
 	background-color: #ED9C3B;
 	font-weight: bolder;
 	text-transform: capitalize;
@@ -215,10 +218,9 @@ body {
 }
 
 .pagination a {
-	float: left;
-	display: block;
+	display: inline-block;
 	text-decoration: none;
-	padding: 5px;
+	padding: 10px;
 	color: white;
 }
 
@@ -231,6 +233,18 @@ body {
 	font-weight: bolder;
 }
 
+.pagination a:hover {
+	margin-left: 3px;
+	padding: 0;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	border-radius: 100%;
+	background-color: #2e9cdf;
+	color: #ffffff;
+
+}
+
 .pagination a:active {
 	outline: none;
 }
@@ -241,18 +255,14 @@ body {
 	width: 30px;
 	height: 30px;
 	line-height: 30px;
-	border-radius: 100%;	
-}
-
-.modal .num:hover {
-	background-color: #2e9cdf;
-	color: #ffffff;
+	border-radius: 100%;
+	color: black;	
 }
 
 .box {
 	width:250px;
 	height:280px;
-	display: inline-block;
+	display: inline-table;
 	margin: 10px 7px 50px;
 	background-color: white;
 }
@@ -405,4 +415,4 @@ footer {
 	clear:left;
 }
 
- 
+  
