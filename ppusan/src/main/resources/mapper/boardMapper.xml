@@ -49,4 +49,8 @@
 	where contentTypeId=#{contentTypeId}
 		and sigunguCode=#{sigunguCode}
 </select>
+
+<select id="findSpotlight" resultType="board">
+	select * from board order by hit desc
+</select>
 </mapper>

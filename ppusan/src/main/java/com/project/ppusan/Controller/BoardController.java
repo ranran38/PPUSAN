@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -96,5 +98,12 @@ public class BoardController {
 		model.addAttribute("category",category);
 		model.addAttribute("sigungu",sigungu);
 		return "/detail";
+	}
+	
+	@GetMapping({"/getSpotlight"})
+	public ResponseEntity<List<Board>> getSpotlight(@RequestParam("page") int page,
+			Model model) {
+		List<Board> boards = boardService.getSpotlight(page);
+		return new ResponseEntity<>(boards, HttpStatus.OK);
 	}
 }
