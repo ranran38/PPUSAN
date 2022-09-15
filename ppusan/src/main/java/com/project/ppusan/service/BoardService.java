@@ -42,4 +42,11 @@ public class BoardService {
 		return boardMapper.findBoardsBySigunguCode(map, rb);
 	}
     
+	public List<Board> getSpotlight(int page){
+		int offset = (page-1)*3;
+		int limit = 3;
+		System.out.println("offset:"+offset+",limit:"+limit);
+		RowBounds rb = new RowBounds(offset, limit);
+		return boardMapper.findSpotlight(rb);
+	}
 }

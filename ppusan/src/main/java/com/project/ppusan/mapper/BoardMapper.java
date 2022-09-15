@@ -18,4 +18,5 @@ public interface BoardMapper {
 	public int getTotalBySigunguCode(HashMap<String,String> map);
 	public List<Board> findBoardsByContentTypeId(String contentTypeId, RowBounds rb);
 	public List<Board> findBoardsBySigunguCode(HashMap<String,String> map, RowBounds rb);
+	public List<Board> findSpotlight(RowBounds rb);
 }

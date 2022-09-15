@@ -5,11 +5,46 @@
     <title>PPUSAN</title>
     <link rel="stylesheet" href="/css/default.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">  
+<script type="text/javascript" th:inline="javascript">  
 	$(function() {
 		$("#header").load("/html/header.html");
 		$("#footer").load("/html/footer.html");
+		
+		getSpotlight();
 	});
+	
+	function getSpotlight(){
+		let page = [[${page}]];
+		if(page < 1){
+			page = 1;
+		}
+		$.ajax({
+			url:"/board/getSpotlight",
+			data: {"page" : page},
+			success: function(result, success, xhr){
+				showSpotlight(result);
+			}
+		});
+	};
+	
+	function showSpotlight(data){
+		$("#showSpotlight").text("");
+		let str = "";
+		$(data).each(function(idx,obj){
+			str += "<div class='mainbox'>";
+			str += "   <div class='mainpicture'>";
+			if(obj.image==null){
+				str += "<img src='https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg' height='150px'>";
+			}else{
+				str += "<img src= '" + obj.image + "'>";
+			}
+			str += "   </div>";
+			str += "   <div class='place'><span>"+ obj.title +"</span></div>";
+			str += "   <div class='address'><span>"+ obj.addr +"</span></div>";
+			str += " </div>";
+		});
+		$("#showSpotlight").append(str);
+	};
 </script> 
 </head>
 <body>
@@ -24,24 +59,10 @@
 			</article>
 			<article id="content2">
 				<h3 id="spotlight">Spotlight</h3>
-				<div class="box"><a href="#"></a>
-					<div class="picture"><a href="#"></a></div>
-					<div class="place"><a href="#">장소명</a></div>
-					<div class="address"><a href="#">주소</a></div>
-				</div>
-				<div class="box"><a href="#"></a>
-					<div class="picture"><a href="#"></a></div>
-					<div class="place"><a href="#">장소명</a></div>
-					<div class="address"><a href="#">주소</a></div>
-				</div>
-				<div class="box"><a href="#"></a>
-					<div class="picture"><a href="#"></a></div>
-					<div class="place"><a href="#">장소명</a></div>
-					<div class="address"><a href="#">주소</a></div>
-				</div>		
+				<div id="showSpotlight"></div>		
 				<div>
-					<a href="#"><img src="image/left-arrow.png" id="left-arrow"></a>
-					<a href="#"><img src="image/right-arrow.png" id="right-arrow"></a>
+					<a th:href="|/?page=${page-1}|"><img src="image/left-arrow.png" id="left-arrow"></a>
+					<a th:href="|/?page=${page+1}|"><img src="image/right-arrow.png" id="right-arrow"></a>
 				</div>
 			</article>
 			<article id="content3">
