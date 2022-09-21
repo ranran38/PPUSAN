@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>PPUSAN</title>
+    <link rel="stylesheet" href="/css/default.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">  
+	$(function() {
+		$("#header").load("/html/subheader.html");
+		$("#footer").load("/html/footer.html");
+	});
+</script> 
+</head>
+<body>
+  <div id="wrap">
+  	<div id="header"></div>
+    <div id="content">
+		<section>
+			<ul id="mypageMenu">
+				<li><p>MyPage</p></li>
+		   	 	<li><a href="/mypage/update">개인정보</a></li>
+			  	<li><a href="/mypage/like">좋아요한 목록</a></li>
+			  	<li><p>나의 뿌산 플랜</p></li>
+			  	<li><a href="/mypage/planner">- 플랜 작성</a></li>
+			  	<li><a href="/mypage/plannerDetail">- 플랜 상세</a></li>
+			</ul>
+			<article id="mypagecon">
+				<h2 id="mypagetitle">플랜 작성</h2>
+				<div class="btn"><button type="button" id="modal_btn">플랜 작성</button></div>
+				<div class="modal_background"></div>
+				<div class="modal_wrap">
+				<div class="modal_close"><img class="closeImg" src="https://w7.pngwing.com/pngs/512/877/png-transparent-close-exit-stop-button-icon-thumbnail.png" alt="x버튼"></div>
+				</div>
+			</article>
+				
+					
+			<script type="text/javascript">
+				// 모달 열기
+				function modalOpen() {
+				    document.querySelector('.modal_wrap').style.display = 'block';
+				    document.querySelector('.modal_background').style.display = 'block';
+				}
+			
+				// 모달 끄기
+				function modalClose() {
+				    document.querySelector('.modal_wrap').style.display = 'none';
+				    document.querySelector('.modal_background').style.display = 'none';
+				}
+			
+			
+				//버튼 클릭리스너 달기
+				document.querySelector('#modal_btn').addEventListener('click', modalOpen);
+				document.querySelector('.modal_close').addEventListener('click', modalClose);
+		
+			</script>
+		</section>	
+    <footer>
+    	<div id="footer"></div>
+	</footer>
+    </div>
+</div>
+</body>
+</html>
