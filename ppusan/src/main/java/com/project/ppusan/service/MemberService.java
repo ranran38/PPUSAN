@@ -16,4 +16,12 @@ public class MemberService {
       memberMapper.insertMember(member);
    }
    
+   public Member findMember(String memberId) {
+       return memberMapper.findMemberById(memberId);
+   }
+   
+   public void updateMember(Member member) {
+       memberMapper.updateMember(member);
+   }
+   
 }
