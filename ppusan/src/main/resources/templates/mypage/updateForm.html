@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>PPUSAN</title>
+    <link rel="stylesheet" href="/css/default.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">  
+	$(function() {
+		$("#header").load("/html/subheader.html");
+		$("#footer").load("/html/footer.html");
+	});
+	
+	function passwordCheckIn() {
+		var password = document.getElementById("password");
+		var passwordConfirm = document.getElementById("passwordConfirm");
+		var pwChecking = /^[a-z0-9].{8,}^/;
+			if (password.value != passwordConfirm.value) {
+				var pwValidation = document.getElementById("pwValidation");
+				var pwConfirmValidation = document.getElementById("pwConfirmValidation");
+				pwValidation.textContent = "비밀번호가 서로 일치하지 않습니다.";
+				pwValidation.style.color = "red";
+				pwConfirmValidation.textContent = "비밀번호가 서로 일치하지 않습니다.";
+				pwConfirmValidation.style.color = "red";
+				return false;
+			}
+		
+			if (password.value == "") {
+				var pwValidation = document.getElementById("pwValidation");
+				pwValidation.textContent = "비밀번호를 입력하시오.";
+				pwValidation.style.color = "red";
+				return false;
+			}
+		
+		
+			if (passwordConfirm.value == "") {
+				var pwConfirmValidation = document.getElementById("pwConfirmValidation");
+				pwConfirmValidation.textContent = "비밀번호를 입력하시오.";
+				pwConfirmValidation.style.color = "red";
+				return false;
+			} 
+			return true;
+	}
+		
+</script> 
+</head>
+<body>
+  <div id="wrap">
+  	<div id="header"></div>
+    <div id="content">
+		<section>
+			<ul id="mypageMenu">
+				<li><p>MyPage</p></li>
+		   	 	<li><a href="/mypage/update">개인정보</a></li>
+			  	<li><a href="/mypage/like">좋아요한 목록</a></li>
+			  	<li><p>나의 뿌산 플랜</p></li>
+			  	<li><a href="/mypage/planner">- 플랜 작성</a></li>
+			  	<li><a href="/mypage/plannerDetail">- 플랜 상세</a></li>
+			</ul>
+			<!-- <article id="mypagecon">
+				<h2 id="mypagetitle">개인정보 수정</h2>
+				<p>이메일</p>
+				<input type="text" value="sec:authentication='memberId'" readonly="readonly">
+				<span sec:authentication='name'></span>
+				<p>비밀번호</p>
+				<input type="password">
+				<p>비밀번호 재입력</p>
+				<input type="password"><br><br>
+			
+				<input type="submit" value="수정하기">
+			</article> -->
+			
+			<form th:action="@{/mypage/update}" th:object="${updateMemberForm}" th:method="post" onsubmit="return passwordCheckIn()">
+            <table>
+                <tr>
+                    <th>이메일</th>
+                    <td>
+			            <input type="text" th:field="*{memberId}" readonly="readonly">
+                        <!-- <span sec:authentication='name'></span> -->
+                    </td>
+                </tr>
+                <tr>
+                    <th>비밀번호</th>
+                    <td>
+                        <input type="password" th:field="*{password}">
+                        <span id="pwValidation"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>비밀번호 확인</th>
+                    <td>
+                        <input type="password" th:field="*{passwordConfirm}">
+                        <span id="pwConfirmValidation"></span>
+                    </td>
+                </tr>
+            </table>
+            <p class="center">
+                <input type="submit" value="수정하기">
+                <input type="button" value="취소" onclick="location.href='/mypage/update'">
+            </p>
+        </form>
+		
+		
+			<!-- <article>
+		    	<img src="image/mainpage.png" width="100%">
+				<button class="aboutPpusan" type="submit" th:onclick="location.href='/detail'">>find out more!</button>
+				<p><br>
+			</article>
+			<article id="content2">
+				<h3 id="spotlight">Spotlight</h3>
+				<div class="box"><a href="#"></a>
+					<div class="picture"><a href="#"></a></div>
+					<div class="place"><a href="#">장소명</a></div>
+					<div class="address"><a href="#">주소</a></div>
+				</div>
+				<div class="box"><a href="#"></a>
+					<div class="picture"><a href="#"></a></div>
+					<div class="place"><a href="#">장소명</a></div>
+					<div class="address"><a href="#">주소</a></div>
+				</div>
+				<div class="box"><a href="#"></a>
+					<div class="picture"><a href="#"></a></div>
+					<div class="place"><a href="#">장소명</a></div>
+					<div class="address"><a href="#">주소</a></div>
+				</div>		
+				<div>
+					<a href="#"><img src="image/left-arrow.png" id="left-arrow"></a>
+					<a href="#"><img src="image/right-arrow.png" id="right-arrow"></a>
+				</div>
+			</article>
+			<article id="content3">
+				<div class="suggestBox">
+					<h2>Suggest</h2>
+					<p>5일 간의 날씨 정보와 그 날에 맞는 옷을 추천해 드립니다.</p>
+					<p><a href="/forecast"> -> find out more</a></p>
+				</div>
+			</article> -->
+		</section>	
+    <footer>
+    	<div id="footer"></div>
+	</footer>
+    </div>
+</div>
+</body>
+</html>

@@ -16,5 +16,13 @@
 	<select id="findMemberById" parameterType="string" resultType="member">
     	select * from member where memberId = #{memberId}
     </select>
+    
+    <update id="updateMember" parameterType="member">
+        update member
+        <set>
+            password = #{password}
+        </set>
+        where memberId = #{memberId}
+    </update>
 
 </mapper>
