@@ -29,7 +29,8 @@ public class WebSecurityConfig {
                 "/api/**",
                 "/main/**",
                 "/detail/**",
-                "/forecast"
+                "/forecast",
+                "/member/info"
         		).permitAll()
         .anyRequest().authenticated()
         .and()

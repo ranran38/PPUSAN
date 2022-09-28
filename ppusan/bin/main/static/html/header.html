@@ -6,24 +6,6 @@
    <link rel="stylesheet" href="/css/default.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
- /*   	
-    	$(function(){
-    		$(".current").hover(){
-    			let str = "";
-    			str += "<ul>";
-		   		str += 	"<li><a href='#'>전체</a></li>";
-		   		str += 	"<li><a href='#'>기장군</a></li>";
-		   		str += 	"<li><a href='#'>동구</a></li>";
-		   		str += 	"<li><a href='#'>중구</a></li>";
-		   		str += 	"<li><a href='#'>부산진구</a></li>";
-		   		str += 	"<li><a href='#'>해운대구</a></li>";
-	   			str += "</ul>";
-    			$("#tmp").append(str);
-    		};
-    	});
-*/
-    </script>
-    <script>
 		$.getJSON('https://api.openweathermap.org/data/2.5/weather?q=Busan&appid=a8de4fd1ab71d6342364fd6cc7e9ec07&units=metric', function(result) {
 			
 			var iconURL = '<img src="http://openweathermap.org/img/wn/' + result.weather[0].icon + '.png" alt="' + result.weather[0].description + '">'
@@ -31,6 +13,35 @@
 			$('.icon').append(result.main.temp );
 			
 		})
+		
+		$(function() {
+            getUserInfo();
+        });
+		
+		function getUserInfo(){
+			$.ajax({
+                url: "/member/info",
+                type: "get",
+                success: function(result) {
+                    console.log(result);
+                    showNickname(result);
+                }
+            });
+		}
+		
+		function showNickname(data){
+			if(data.length>0){
+				$(".pannel").text("");
+				let str = "";
+				str += "<button class='dropbtn' id='font1'>" + data + "님</button>";
+		  		str += "<div class='dropdown'>"
+		    	str += "	<a href='/mypage/update'><span>마이페이지</span></a>"
+		    	str += "<a href='/member/logout'><span>로그아웃</span></a>"
+		  		str += "</div>"
+				$(".pannel").append(str);
+			}
+		}
+		
 	</script>
 </head>
 <body>
@@ -43,7 +54,6 @@
    		<nav class="dropmenu">
    		<ul>
    			<li><a href="/board/list/spot" class="current">관광지</a>
-   			<div id="tmp"></div>
 	   			<ul>
 		   			<li><a href="/board/list/spot">전체</a></li>
 		   			<li><a href="/board/list/spot?sigungu=gijang">기장군</a></li>
@@ -86,9 +96,10 @@
    			<li><a href="/board/list/about" class="current">about부산</a>
 			</ul>
  		</nav>
- 	<div>	
-    	<a href="member/login" id="login">로그인/회원가입</a>
-    </div>
+ 		
+    <div class="pannel">
+  		<button id="font1" class="dropbtn" onclick="location.href='/member/login'">login</button>
+	</div>
     <div class="block">&nbsp;</div>
 </body>
 </html>
