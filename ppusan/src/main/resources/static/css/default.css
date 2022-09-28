@@ -490,7 +490,7 @@ footer {
     height: 550px;
     overflow-y: auto;
     position: absolute;
-    top:23%;
+    top:400px;
     left: 40%;
     margin: -250px 0 0 -250px;
     background:#eee;
@@ -513,7 +513,7 @@ footer {
     width: 30px;
     height: 30px;
     position: fixed;
-    top: 7%;
+    top: 12%;
     right: 23%;
 }
 

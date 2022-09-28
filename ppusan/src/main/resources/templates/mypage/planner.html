@@ -3,19 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>PPUSAN</title>
-    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/mypage.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">  
 	$(function() {
 		$("#header").load("/html/subheader.html");
 		$("#footer").load("/html/footer.html");
 	});
+	
+	function check() {
+		let plantitle = $('#plantitle').val();
+		let startday = $('#startday').val();
+		let endday = $('#endday').val();
+		
+		if (plantitle.length == 0) {
+			alert("여행 제목을 입력하세요.");
+			return false;
+		}
+		if (startday.length == 0) {
+			alert("시작일을 입력하세요.");
+			return false;
+		}
+		if (endday.length == 0) {
+			alert("종료일을 입력하세요.");
+			return false;
+		}
+		return true;
+	}
+		
 </script> 
 </head>
 <body>
   <div id="wrap">
   	<div id="header"></div>
-    <div id="content">
+    <div id="mycontent">
 		<section>
 			<ul id="mypageMenu">
 				<li><p>MyPage</p></li>
@@ -25,36 +46,62 @@
 			  	<li><a href="/mypage/planner">- 플랜 작성</a></li>
 			  	<li><a href="/mypage/plannerDetail">- 플랜 상세</a></li>
 			</ul>
+						
 			<article id="mypagecon">
 				<h2 id="mypagetitle">플랜 작성</h2>
+			</article>
+		</section>	
+		
+			
 				<div class="btn"><button type="button" id="modal_btn">플랜 작성</button></div>
 				<div class="modal_background"></div>
-				<div class="modal_wrap">
-				<div class="modal_close"><img class="closeImg" src="https://w7.pngwing.com/pngs/512/877/png-transparent-close-exit-stop-button-icon-thumbnail.png" alt="x버튼"></div>
+				<div class="modal_wrap2">
+				<div class="modal_close2"><img class="closeImg" src="https://w7.pngwing.com/pngs/512/877/png-transparent-close-exit-stop-button-icon-thumbnail.png" alt="x버튼"></div>
+				<div  class="text">
+				<form th:action="@{/mypage/plannerwrite}"  method="get" onsubmit="return check()">
+					<table>
+						<tr>
+							<th>여행 제목</th>
+							<td><textarea cols="50" rows="1" id="plantitle"></textarea></td>
+						</tr>
+						<tr>
+							<th>여행 기간</th>
+							<td><input type="date" id="startday" value="시작일"> ~ <input type="date" id="endday" value="종료일"></td>
+						</tr>
+						<tr>
+							<th>설명</th>
+							<td><textarea cols="50" rows="5" name="contents" id="contents"></textarea></td>
+						</tr>
+						<tr>
+							<td><input type="submit" value="만들러 가기"></td>
+						</tr>
+					</table>
+				</form>
+				</div>	
 				</div>
-			</article>
-				
-					
+			
+			
 			<script type="text/javascript">
 				// 모달 열기
 				function modalOpen() {
-				    document.querySelector('.modal_wrap').style.display = 'block';
+				    document.querySelector('.modal_wrap2').style.display = 'block';
 				    document.querySelector('.modal_background').style.display = 'block';
+				    document.body.style.overflow = "hidden";
 				}
 			
 				// 모달 끄기
 				function modalClose() {
-				    document.querySelector('.modal_wrap').style.display = 'none';
+				    document.querySelector('.modal_wrap2').style.display = 'none';
 				    document.querySelector('.modal_background').style.display = 'none';
+				    document.body.style.overflow = "unset";
 				}
 			
 			
 				//버튼 클릭리스너 달기
 				document.querySelector('#modal_btn').addEventListener('click', modalOpen);
-				document.querySelector('.modal_close').addEventListener('click', modalClose);
+				document.querySelector('.modal_close2').addEventListener('click', modalClose);
 		
 			</script>
-		</section>	
     <footer>
     	<div id="footer"></div>
 	</footer>
