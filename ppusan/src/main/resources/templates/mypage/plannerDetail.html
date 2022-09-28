@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>PPUSAN</title>
+    <link rel="stylesheet" href="/css/default.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">  
+	$(function() {
+		$("#header").load("/html/subheader.html");
+		$("#footer").load("/html/footer.html");
+	});
+</script> 
+</head>
+<body>
+  <div id="wrap">
+  	<div id="header"></div>
+    <div id="content">
+		<section>
+			<ul id="mypageMenu">
+				<li><p>MyPage</p></li>
+		   	 	<li><a href="/mypage/update">개인정보</a></li>
+			  	<li><a href="/mypage/like">좋아요한 목록</a></li>
+			  	<li><p>나의 뿌산 플랜</p></li>
+			  	<li><a href="/mypage/planner">- 플랜 작성</a></li>
+			  	<li><a href="/mypage/plannerDetail">- 플랜 상세</a></li>
+			</ul>
+			
+			<article id="mypagecon">
+				<h2 id="mypagetitle">플랜 상세 보기</h2>
+			</article>
+			
+		</section>	
+    <footer>
+    	<div id="footer"></div>
+	</footer>
+    </div>
+</div>
+</body>
+</html>
