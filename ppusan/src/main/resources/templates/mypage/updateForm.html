@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>PPUSAN</title>
-    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/mypage.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">  
 	$(function() {
@@ -13,7 +13,7 @@
 	
 	function passwordCheckIn() {
 		var password = document.getElementById("password");
-		var passwordConfirm = document.getElementById("passwordConfirm");
+		var passwordConfirm = document.getElementById("pwcheck");
 		var pwChecking = /^[a-z0-9].{8,}^/;
 			if (password.value != passwordConfirm.value) {
 				var pwValidation = document.getElementById("pwValidation");
@@ -69,36 +69,34 @@
 			
 				<input type="submit" value="수정하기">
 			</article> -->
-			
-			<form th:action="@{/mypage/update}" th:object="${updateMemberForm}" th:method="post" onsubmit="return passwordCheckIn()">
-            <table>
+		<div id="updateform">
+		<form name="updateForm" th:action="@{/mypage/update/{memberId}(memberId=${updateForm.memberId})}" th:method="post" th:object="${updateForm}">
+			<table>
+			<input type="hidden" th:field="*{memberId}">
                 <tr>
                     <th>이메일</th>
                     <td>
-			            <input type="text" th:field="*{memberId}" readonly="readonly">
-                        <!-- <span sec:authentication='name'></span> -->
+			            <span sec:authentication='name'></span>
                     </td>
                 </tr>
                 <tr>
-                    <th>비밀번호</th>
+                    <th>새 비밀번호</th>
                     <td>
                         <input type="password" th:field="*{password}">
                         <span id="pwValidation"></span>
                     </td>
                 </tr>
                 <tr>
-                    <th>비밀번호 확인</th>
+                    <th>새 비밀번호 확인</th>
                     <td>
-                        <input type="password" th:field="*{passwordConfirm}">
+                        <input type="password" id="pwcheck">
                         <span id="pwConfirmValidation"></span>
                     </td>
                 </tr>
             </table>
-            <p class="center">
-                <input type="submit" value="수정하기">
-                <input type="button" value="취소" onclick="location.href='/mypage/update'">
-            </p>
-        </form>
+            <input type="submit" value="수정하기" onsubmit="return passwordCheckIn()">
+		</form>
+		</div>
 		
 		
 			<!-- <article>
