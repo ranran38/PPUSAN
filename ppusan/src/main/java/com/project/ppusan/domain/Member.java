@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
  * UserDetails 인터페이스를 implements
  * 
  */
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,5 +18,13 @@ public class Member {
 		private String emailAddress;	//사용자 이메일 주소
 		private String password;		//사용자 비밀번호
 		private String nickname;		//사용자 닉네임
-		private String role;			//사용자 구분. 'ROLE_USER':일반사용
+		private String role;			//사용자 구분. 'ROLE_USER':일반사용자
+		
+		public UpdateMemberForm toUpdateMemberForm() {
+			UpdateMemberForm updateMemberForm = new UpdateMemberForm();
+			updateMemberForm.setMemberId(memberId);
+			updateMemberForm.setPassword(password);
+			return updateMemberForm;
+		}
+
 	}

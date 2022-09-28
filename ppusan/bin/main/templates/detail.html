@@ -10,13 +10,33 @@
       $("#sub").load("/html/subheader.html");
       $("#footer").load("/html/footer.html");
       
-      
    });
    
    function showDetail(contentId){
 	   alert(contentId);
+	   $.getJSON('http://apis.data.go.kr/B551011/KorService/detailCommon?ServiceKey=XR5hyBkBHwkX3CFe3R0BIXVKLgGVbcua5FmQ1I27XP0mipS3EpACc9U%2FRnH2U19EH7nA5kIHkaYKu1MVSAPIxg%3D%3D&contentId=' + contentId + '&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json', function(result) {
+		   var overview = result.response.body.items.item["0"].overview;
+		   var title = result.response.body.items.item["0"].title;
+		   var firstimage = result.response.body.items.item["0"].firstimage;
+		   var addr1 = result.response.body.items.item["0"].addr1;
+		   var addr2 = result.response.body.items.item["0"].addr2;
+		   var addr = addr1 + addr2;
+		   var mapx = result.response.body.items.item["0"].mapx;
+		   var mapy = result.response.body.items.item["0"].mapy;
+		   var detail = {
+			   title:title,
+			   overview:overview,
+			   firstimage:firstimage,
+			   addr:addr,
+			   mapx:mapx,
+			   mapy:mapy
+		   };
+			   
+		   modalOpen(detail);
+	   });
    }
 </script> 
+
 </head>
 <body>
 <div id="wrap">
@@ -68,6 +88,7 @@
             </div>
             
             <th:text th:each="board : ${boards}">
+            <a href="#content">
                <div class="box" th:contentId="${board.contentId}" th:onclick="showDetail(this.getAttribute('contentId'))">
                   <div class="picture">
                      <img th:unless="${board.image}==null" th:src="${board.image}">
@@ -76,6 +97,7 @@
                   <div class="place">[[${board.title}]]</div>
                   <div class="address">[[${board.addr}]]</div>
                </div>
+               </a>
             </th:text>
                                                                                                       
          </article>
@@ -83,6 +105,53 @@
             <a href="#content"><img src="/image/upperBtn.png" width="5%"></a>
          </div>
       </section>
+      
+					<div class="modal_background"></div>
+					<div class="modal_wrap">
+				   		<div class="modal_close"><img class="closeImg" src="https://w7.pngwing.com/pngs/512/877/png-transparent-close-exit-stop-button-icon-thumbnail.png" alt="x버튼"></div>
+						    <div class="title"></div>
+					   		<div class="text"></div>
+					   		<div class="overview"></div>
+					   		<div class="addr"></div>
+					   		<div class="map"></div>
+					</div>
+	<script type="text/javascript">
+		// 모달 열기
+		function modalOpen(detail) {
+			console.log(detail);
+		    document.querySelector('.modal_wrap').style.display = 'block';
+		    document.querySelector('.modal_background').style.display = 'block';
+		    document.body.style.overflow = "hidden";
+		    $(".text").empty();
+		    $(".title").empty();
+		    $(".overview").empty();
+		    $(".addr").empty();
+		    $(".map").empty();
+		    
+		    $('.title').append(detail.title);
+		    if (detail.firstimage == "") {
+			    $('<img src="https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg">').appendTo(".text");
+		    } else {
+			    $("<img src=" + detail.firstimage + ">").appendTo(".text");
+		    }
+		    $('.overview').append(detail.overview);
+		    $('.addr').append(detail.addr);
+		    $('.map').append("X : " + detail.mapx + "Y : " + detail.mapy);
+		    
+		}
+	
+		// 모달 끄기
+		function modalClose() {
+		    document.querySelector('.modal_wrap').style.display = 'none';
+		    document.querySelector('.modal_background').style.display = 'none';
+		    document.body.style.overflow = "unset";
+		}
+	
+	
+		//버튼 클릭리스너 달기
+		document.querySelector('.modal_close').addEventListener('click', modalClose);
+
+	</script>
    <footer>
       <div id="footer"></div>
    </footer>

@@ -9,9 +9,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UpdateMemberForm {
 	private String memberId;		//사용자 이메일
-	private String emailAddress;	//사용자 이메일 주소
 	private String password;		//사용자 비밀번호
-	private String nickname;		//사용자 닉네임
-	private String role;
+	
+	public Member toMember() {
+		Member member = new Member();
+		member.setMemberId(memberId);
+		member.setPassword(password);
+		return member;
+	}
 
 }

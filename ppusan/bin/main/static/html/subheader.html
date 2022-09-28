@@ -60,7 +60,7 @@
 			</ul>
  		</nav>
  	<div>	
-    	<a href="/mypage/update" id="mypage">마이페이지</a>
+    	<a th:href="@{/member/{memberId}(memberId=${member.memberId})}" id="mypage">마이페이지</a>
     </div>
     <div class="block">&nbsp;</div>
   </div>

@@ -56,8 +56,6 @@ public class MemberController {
     @GetMapping(value = "/login-success")
     public String login_success(@AuthenticationPrincipal UserInfo userInfo, Model model) {
         log.info("userInfo : {}", userInfo);
-        log.info("userInfo : {}", userInfo.getUsername());
-      model.addAttribute("longinMemeber", userInfo.getMember());
         return "redirect:/";
     }
 
@@ -66,6 +64,17 @@ public class MemberController {
     public String login_fail() {
         log.info("login-fail");
         return "redirect:/member/login";
+    }
+    
+    @GetMapping(value = "/info")
+    public ResponseEntity<String> MemberInfo(@AuthenticationPrincipal UserInfo user) {
+    	if(user!=null) {
+    		log.info("getMember:{}", user.getMember());
+    		return new ResponseEntity<>(user.getMember().getNickname(),HttpStatus.OK);
+    	}else {
+    		log.info("메인에 로그인 정보없음");
+    		return new ResponseEntity<>("",HttpStatus.OK);
+    	}
     }
 
     
