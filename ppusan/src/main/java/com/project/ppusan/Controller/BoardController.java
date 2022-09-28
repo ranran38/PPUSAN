@@ -1,21 +1,33 @@
 package com.project.ppusan.Controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.ppusan.domain.Board;
 import com.project.ppusan.domain.Code;
+import com.project.ppusan.domain.Heart;
+import com.project.ppusan.domain.LikeBean;
+import com.project.ppusan.domain.Member;
+import com.project.ppusan.security.UserInfo;
 import com.project.ppusan.service.BoardService;
+import com.project.ppusan.service.HeartService;
 import com.project.ppusan.util.PageNavigator;
 
 import lombok.RequiredArgsConstructor;
@@ -102,8 +114,29 @@ public class BoardController {
 	
 	@GetMapping({"/getSpotlight"})
 	public ResponseEntity<List<Board>> getSpotlight(@RequestParam("page") int page,
-			Model model) {
+			Model model,@AuthenticationPrincipal UserInfo user) {
 		List<Board> boards = boardService.getSpotlight(page);
+		for(Board board : boards) {
+			if(user==null) {
+				board.setCheckLike("F");
+			}else {
+				String contentId = board.getContentId();
+				String memberId = user.getUsername();
+				HashMap<String,String> map = new HashMap<String,String>();
+				map.put("memberId", memberId);
+				map.put("contentId", contentId);
+				int result = boardService.checkLike(map);
+				System.out.println(memberId);
+				System.out.println(contentId);
+				System.out.println(result);
+				if(result == 1) {
+					board.setCheckLike("T");
+				}else {
+					board.setCheckLike("F");
+				}
+			}
+		}
+		System.out.println(boards);
 		return new ResponseEntity<>(boards, HttpStatus.OK);
 	}
 }

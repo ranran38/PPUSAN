@@ -4,15 +4,59 @@
     <meta charset="UTF-8">
     <title>PPUSAN</title>
     <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" th:inline="javascript">  
 	$(function() {
 		$("#header").load("/html/header.html");
 		$("#footer").load("/html/footer.html");
-		
-		getSpotlight();
+		$('#likebtn').click(function(){
+		likeupdate();
 	});
+		getSpotlight();
+		
+	});
+
+
 	
+	function likeupdate(){
+		var root = getContextPath(),
+		likeurl = "/board/likeupdate",
+		memberId = $('#memberId').val(),
+		contentId = $('#contentId').val(),
+		count = $('#likecheck').val(),
+		data = {"ltmid" : memberId,
+				"ltbid" : contentId,
+				"count" : count};
+		
+	$.ajax({
+		url : root + likeurl,
+		type : 'PUT',
+		contentType: 'application/json',
+		data : JSON.stringify(data),
+		success : function(result){
+			console.log("수정" + result.result);
+			if(count == 1){
+				console.log("좋아요 취소");
+				 $('#likecheck').val(0);
+				 $('#likebtn').attr('src','/image/heart.png');
+			}else if(count == 0){
+				console.log("좋아요!");
+				$('#likecheck').val(1);
+				$('#likebtn').attr('src','/image/heart.png');
+			}
+		}, error : function(result){
+			console.log("에러" + result.result)
+		}
+		
+		});
+	};
+	
+	function getContextPath() {
+	    var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+	    return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+	} 
+
 	function getSpotlight(){
 		let page = [[${page}]];
 		if(page < 1){
@@ -41,10 +85,19 @@
 			str += "   </div>";
 			str += "   <div class='place'><span>"+ obj.title +"</span></div>";
 			str += "   <div class='address'><span>"+ obj.addr +"</span></div>";
-			str += " </div>";
+			str += "	<div class='like'>";
+			if(obj.checkLike=='F'){
+				str += "<img id='unheart' src='/image/unheart.png'>";
+			}else if(obj.checkLike=='T'){
+				str += "<img id='heart' src='/image/heart.png'>";
+			}
+			str += obj.likeCount + "</div>";
+			str += "</div>"
 		});
 		$("#showSpotlight").append(str);
 	};
+	
+	
 </script> 
 </head>
 <body>
@@ -59,7 +112,17 @@
 			</article>
 			<article id="content2">
 				<h3 id="spotlight">Spotlight</h3>
-				<div id="showSpotlight"></div>		
+				<div id="showSpotlight"></div>	
+				<div id="like">
+					<th:block th:if="${ltlike==0}">
+						<button type="button" class="btn btn-light" id="likebtn">좋아요</button>
+						<input type="hidden" id="likecheck" value="${ltlike }">
+					</th:block>					
+					<th:block th:if="${ltlike==1}">
+						<button type="button" class="btn btn-danger" id="likebtn">좋아요</button>
+						<input type="hidden" id="likecheck" value="${ltlike }">
+					</th:block>			
+				</div> 	
 				<div>
 					<a th:href="|/?page=${page-1}|"><img src="image/left-arrow.png" id="left-arrow"></a>
 					<a th:href="|/?page=${page+1}|"><img src="image/right-arrow.png" id="right-arrow"></a>
@@ -67,7 +130,7 @@
 			</article>
 			<article id="content3">
 				<div class="suggestBox">
-					<h2>Suggest</h2>
+					<h2>Suggest</h2>  
 					<p>5일 간의 날씨 정보와 그 날에 맞는 옷을 추천해 드립니다.</p>
 					<p><a href="/forecast"> -> find out more</a></p>
 				</div>

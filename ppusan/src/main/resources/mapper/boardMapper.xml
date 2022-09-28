@@ -53,4 +53,9 @@
 <select id="findSpotlight" resultType="board">
 	select * from board order by hit desc
 </select>
+
+<select id="checkLike" resultType="int" parameterType="map">
+	select count(*) from likeBoard where memberId=#{memberId} and contentId=#{contentId}
+</select>
+
 </mapper>

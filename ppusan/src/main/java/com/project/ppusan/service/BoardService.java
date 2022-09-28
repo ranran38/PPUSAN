@@ -49,4 +49,9 @@ public class BoardService {
 		RowBounds rb = new RowBounds(offset, limit);
 		return boardMapper.findSpotlight(rb);
 	}
+	
+	public int checkLike(HashMap<String,String> map) {
+		System.out.println(map);
+		return boardMapper.checkLike(map);
+	}
 }

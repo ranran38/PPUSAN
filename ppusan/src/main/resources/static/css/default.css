@@ -552,3 +552,30 @@ footer {
 .modal_wrap .map {
 	padding: 20px;
 }
+
+.mainbox{
+	width:300px;
+	height:360px;
+	display: inline-table;
+	margin: 20px 13px 40px;
+	background-color: white;
+}
+
+.mainpicture {
+	margin: 20px 0px 50px 0px;
+	width:260px;
+	height:200px;
+	display: inline-block;
+	text-decoration: none;
+	border: solid 5px;
+	border-color: rgb(200,200,200);
+}
+
+.mainpicture img{
+	width:100%;
+	height:100%;
+}
+
+.like img{
+	width: 20px;
+}

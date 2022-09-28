@@ -19,4 +19,5 @@ public interface BoardMapper {
 	public List<Board> findBoardsByContentTypeId(String contentTypeId, RowBounds rb);
 	public List<Board> findBoardsBySigunguCode(HashMap<String,String> map, RowBounds rb);
 	public List<Board> findSpotlight(RowBounds rb);
+	public int checkLike(HashMap<String,String> map);
 }
