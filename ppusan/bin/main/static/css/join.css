@@ -1,0 +1,110 @@
+@charset "UTF-8";
+
+body{
+	background: #e7f9fd;
+	text-align: center;	
+}
+
+h2, #memberid, #memberpw, #id, #memberpwc, #nName{
+	color: white;
+	text-align: center;
+	/*webkit-text-stroke: 1px white;*/
+	text-shadow: 2px 4px 2px gray;
+	font-size: 30px;
+}
+
+#id{
+	font-size: 20px;
+}
+
+.idCheck{
+	text-align: left;
+	vertical-align : top;
+}
+
+#copyright{
+	color: white;
+	font-size: 20px;
+	font-style: comic Sans MS;
+}
+input > #loginButton {
+
+	width: 100px;
+	height: 100px;
+}
+
+td, input, a{
+	margin: 0 auto;
+	padding-left: 0 auto;
+}
+
+input > #loginButton{
+	width: 300px; 
+	height: 300px;
+}
+
+#joinImgMain{
+	float: left;
+	image-rendering:-webkit-optimize-contrast;
+}
+
+#joinImg{ 
+	height: 200px;
+	width: 500px;
+	border-radius: 45px;
+	margin: 0 auto;
+	image-rendering:-webkit-optimize-contrast;
+  	transform:translateZ(0);
+  	backface-visibility:hidden;
+}
+
+.joinForm{
+	background: #a6a19c;
+	height: 650px;
+	width: 500px;
+    border-radius: 45px;
+    margin: 0 auto;
+    font-weight: bold;
+}
+
+.joinWindow{
+	margin: 0 auto;
+	border-spacing: 10px;
+}
+
+#joinButton, #return{
+	background-color: #ffffff;
+	font-size: 20px;
+	font-weight: bold;
+	color: #a6a19c;
+	width: 100px;
+	height: 100px;
+	border-radius: 15px;
+	font-weight: bold;
+	border: white;
+}
+
+#joinButton, #return{
+	width: 100px;
+	height: 50px;
+}
+
+#memberId, #password, #passwordConfirm, #nickname{
+	width: 200px;
+	height: 35px;
+	border-radius: 10px;
+	font-weight: bold;
+	border: white;
+}
+
+#memberIdValidation, #pwValidation, #passwordConfirm, #nicknameValidation{
+	size: 10px;
+	color: #eb4c4c;
+}
+
+#idConfirm{
+	width: 100px;
+	height: 35px;
+	border-radius: 10px;
+	border: #ffffff;
+}
