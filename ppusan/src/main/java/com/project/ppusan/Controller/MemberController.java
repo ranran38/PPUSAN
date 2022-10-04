@@ -32,15 +32,14 @@ public class MemberController {
     // 회원가입 폼
     @GetMapping(value = "/join")
     public String joinForm(Model model) {
-//    	model.addAttribute("FormData", new FormData());
     	return "member/join";
     }
 
     @PostMapping(value = "/join")
     public String join(Member member) {
-//		log.info("member : {}", formData);
+		log.info("member : {}", member);
     	member.setPassword(bCryptPasswordEncoder.encode(member.getPassword()));
-        member.setMemberId(member.getMemberId() + "@" + member.getEmailAddress());
+        member.setMemberId(member.getMemberId());
     	memberService.insertMember(member);
     	return "redirect:/";
     }
@@ -55,7 +54,6 @@ public class MemberController {
     @GetMapping(value = "/login-success")
     public String login_success(@AuthenticationPrincipal UserInfo userInfo, Model model) {
         log.info("userInfo : {}", userInfo);
-        log.info("userInfo : {}", userInfo.getUsername());
 		model.addAttribute("longinMemeber", userInfo.getMember());
         return "redirect:/";
     }

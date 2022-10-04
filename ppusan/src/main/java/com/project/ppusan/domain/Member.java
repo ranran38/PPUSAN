@@ -15,9 +15,13 @@ import lombok.NoArgsConstructor;
 public class Member {
 
 		private String memberId;		//사용자 이메일
-		private String emailAddress;	//사용자 이메일 주소
 		private String password;		//사용자 비밀번호
 		private String nickname;		//사용자 닉네임
 		private String role;			//사용자 구분. 'ROLE_USER':일반사용자
+		public String check_account(String iD) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
 
 	}

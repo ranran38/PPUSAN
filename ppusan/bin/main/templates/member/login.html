@@ -3,27 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <title>PPUSAN</title>
+    <link rel="stylesheet" href="/css/login.css">
 </head>
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {   
+    var loginButton = document.getElementById("loginButton");
+    loginButton.addEventListener('click', checkValidation);
+	
+	
+	function checkValidation() {
+		var loginForm = document.getElementById("loginForm");
+		var loginFlg = loginCheckIn();
+		if (!loginFlg) {
+			return;
+		}
+		alert("로그인 성공.");
+		loginForm.submit();
+	}
+	
+	function loginCheckIn() {
+		var memberId = document.getElementById("memberId");
+		var memberIdValidation = document.getElementById("memberIdValidation");
+		var password = document.getElementById("password");
+		var passwordValidation = document.getElementById("passwordValidation");
+		
+		if (memberId.value == "" && password.value == "") {
+			alert("이메일과 비밀번호를 입력하시오.");
+			return false;
+		} 
+		
+		if (memberId.value == "") {
+			alert("이메일를 입력하시오.");
+			return false;
+		} 
+		
+		if (password.value == "") {
+			alert("비밀번호를 입력하시오.");
+			return false;
+		} 
+		return true;
+	}
+});
+</script>
 <body>
-    <h1>[ 로그인 ]</h1>
+    <span th:onclick="|location.href='/'|"><img id="loginImgMain" src="..\image\ppusan.png"></span>
     <form id="loginForm" th:action="@{/member/login}" method="post">
-		<table>
-		<tr>
-			<th>아이디</th>
-			<td><input type="text" name="memberId" id="memberId" /></td>
-		</tr>
-		<tr>
-			<th>비밀번호</th>
-			<td><input type="password" name="password" id="password" /></td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<input type="submit" value="로그인" />
-				<input type="button" value="뒤로가기" th:onclick="|location.href='/'|">
-				<input type="button" value="회원가입" th:onclick="|location.href='/member/join'|">
-			</td>
-		</tr>
-		</table>
-		</form>
+    <br>
+    <div id="loginImg"><img id="loginImg" src="..\image\ppusan_Join&login_log.png"></div>
+    	<br>
+    	<div class="loginForm">
+    		<br>
+			<h2 id="logintag">로그인 입력 부분</h2>
+				<table class="loginWindow">
+					<tr>
+						<th id="memberid"><label for="id">ID</label></th>
+						<td><input type="text" name="memberId" id="memberId" /></td>
+						<td id="lbutton" rowspan="2"><input type="submit" id="loginButton" value="로그인" /></td>
+					</tr>	
+					<tr>
+						<th id="memberpw"><label for="pw">PW</label></th>
+						<td id="pbutton" ><input type="password" name="password" id="password" /></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td class="idCheck"><input type="checkbox" id="idSaveCheck"> <label id="id">아이디 저장</label></td>
+						<td><input type="button" id="joinButton" value="회원가입" style="background-color: white" th:onclick="|location.href='/member/join'|"></td>
+					</tr>
+				</table>
+				<div id="copyright">
+					<h6>2022<br>
+							Busan ABC Master_03_03</h6>
+				</div>
+			</div>
+			<br>
+			
+			<div>
+		</div>
+	</form>
 </body>
-</html>
