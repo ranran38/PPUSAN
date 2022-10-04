@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.ppusan.domain.Board;
+import com.project.ppusan.domain.Likelist;
 import com.project.ppusan.mapper.BoardMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -48,5 +49,9 @@ public class BoardService {
 		System.out.println("offset:"+offset+",limit:"+limit);
 		RowBounds rb = new RowBounds(offset, limit);
 		return boardMapper.findSpotlight(rb);
+	}
+	
+	public List<Likelist> findLikeList(String memberId) {
+		return boardMapper.findLikeList(memberId);
 	}
 }

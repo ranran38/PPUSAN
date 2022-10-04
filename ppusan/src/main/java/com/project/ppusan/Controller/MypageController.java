@@ -1,6 +1,7 @@
 package com.project.ppusan.Controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,10 +16,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.ppusan.domain.Board;
+import com.project.ppusan.domain.Code;
+import com.project.ppusan.domain.Likelist;
 import com.project.ppusan.domain.Member;
 import com.project.ppusan.domain.UpdateMemberForm;
+import com.project.ppusan.mapper.BoardMapper;
 import com.project.ppusan.security.UserInfo;
+import com.project.ppusan.service.BoardService;
 import com.project.ppusan.service.MemberService;
+import com.project.ppusan.util.PageNavigator;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +37,12 @@ import lombok.extern.slf4j.Slf4j;
 public class MypageController {
 	
 	private final MemberService memberService;
+	private final BoardService boardService;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	Code code = new Code();
+	final int countPerPage = 9;    // 페이지 당 글 수
+    final int pagePerGroup = 3;     // 페이지 이동 그룹 당 표시할 페이지 수
 	
 	/*
 	 * @GetMapping("/update") public String update() { return "mypage/updateForm"; }
@@ -91,9 +103,24 @@ public class MypageController {
 		return "/mypage/plannerDetail";
 	}	
 	
-	@GetMapping("/like")
-	public String like() {
-		return "/mypage/like";
-	}	
+	//@GetMapping("/like")
+	/*
+	 * public String liket(@AuthenticationPrincipal UserInfo user, String
+	 * category, @RequestParam(value = "page", defaultValue = "1") int page, Model
+	 * model) { String contentTypeId = code.toContentTypeId(category); int total =
+	 * boardService.getTotal(contentTypeId); PageNavigator navi = new
+	 * PageNavigator(countPerPage, pagePerGroup, page, total); String memberId =
+	 * user.getUsername(); model.addAttribute("memberId", memberId); List<Board>
+	 * board = boardService.findLikeList(memberId, navi.getStartRecord(),
+	 * navi.getCountPerPage()); return "/mypage/like"; }
+	 */	
 	
+	@GetMapping("/like")
+	public String like(@AuthenticationPrincipal UserInfo user,Model model) {
+		String memberId = user.getUsername();
+		List<Likelist> list = boardService.findLikeList(memberId);
+		log.info("boarffff : {}", list);
+		model.addAttribute("list", list);
+		return "/mypage/like";
+	}
 }

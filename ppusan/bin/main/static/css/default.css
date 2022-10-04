@@ -2,7 +2,7 @@
 
 
 body {
-	background: rgb(241, 255, 254);
+	background: rgb(243, 255, 254);
 	display: flex;
 }
 
@@ -17,10 +17,15 @@ body {
 #wrap {
 	width: 1000px; 
 	margin: 0 auto;
-	background: #c8ffff;  
+	color: #fff; 
+	background: rgb(217,255,252);  
 	text-align: center; 
 	position: relative;
 	}
+
+#forecast:hover{
+	background-color: rgb(242,201,109);
+}
 
 #forecast {
 	float: left; 
@@ -42,12 +47,12 @@ body {
 #ppusan {	
 	float: left; 
 	width: 110px; 
-	height: 50px; 
-	line-height: 50px; 
+	height: 110px; 
+	line-height: 90px; 
 	border-radius: 20px;
 	text-decoration: none;
-	background-image: url("/image/ppusan.png");
-	background-size: 85px;
+	background-image: url("/image/ppusan2.png");
+	background-size: 140px;
 	background-position: center;
 	background-repeat: no-repeat;
 	background: cover;
@@ -67,17 +72,6 @@ body {
 	font-size:18px;
 }
 
-#login {
-    float: left; 
-    width: 100px; 
-    height: 50px; 
-    line-height: 50px; 
-    background-color: rgb(146, 255, 227); 
-    border-radius: 20px;
-    text-decoration: none;
-    margin: 0px 10px;
-    font-size: 12px;
-    }
 #mypage {
     float: left; 
     width: 100px; 
@@ -86,54 +80,22 @@ body {
     background-color: rgb(192, 192, 192);
     border-radius: 20px;
     text-decoration: none;
-    color: black;
+    color: white;
     margin: 0px 10px;
     font-size: 12px;
     }
-    
-#mypageMenu {
-	list-style-type: none;
-	padding: 0px;
-	margin: 20px;
-	width: 150px;
-	background: rgb(241, 255, 254);
-	height: 50%;
-	overflow: auto;
-	position: fixed;
-	border-radius: 20px;
-}
-
-#mypageMenu li a {
-  text-decoration: none;
-  padding: 10px;
-  display: block;
-  color: black;
-  font-weight: bold;
-}
-
-#mypageMenu li a:hover {
-  font-weight: bolder;
-  color: #004080;
-}
-
-#mypagecon {
-    background: #c8ffff;
-    margin: 50px;
-	height: 350px;
-	background-size: cover;
-}
     
 #content {
     float: left; 
     width: 1000px; 
     height: auto; 
-	background: #c8ffff; 
+	background: rgb(217,255,252); 
     }   
 
 
 .category {
 	text-align: left;
-	margin: 30px 30px 5px;
+	margin: 20px 70px 5px;
 	color: black;
 }
 
@@ -143,7 +105,7 @@ body {
 	background-color: rgb(155,205,205);
 	border-radius: 5px;
 	font-size: 12px;
-	margin: 5px 30px;
+	margin: 5px 60px;
 	padding: 5px;
 }
 
@@ -152,14 +114,16 @@ body {
 }
 
 .aboutPpusan {
+	margin: 15px 0px 30px;
 	border-radius: 20px;
 	background-color: aqua;
 	color: white;
 	text-align: center;
-	width: 130px;
-	height: 30px;
+	width: 140px;
+	height: 35px;
 	border: 0;
 	font-style: italic;
+	font-size: 15px;
 	border-radius: 20px;
 	cursor: pointer;
 }
@@ -181,17 +145,6 @@ body {
 	font-weight:bold;
 	font-family: inherit;
 	text-align: left;
-	margin: 20px 20px 20px 20px;
-	
-}
-
-#mypagetitle {
-	color: rgb(0, 128, 255);
-	text-shadow: -3px -3px 5px white;
-	font-size: 30px;
-	font-weight:bold;
-	font-family: inherit;
-	text-align: center;
 	margin: 20px 20px 20px 20px;
 	
 }
@@ -233,7 +186,7 @@ body {
 }
 
 #list {
-	background-color: rgb(196, 190, 190); 
+	background-color: rgb(196,190,190); 
 	padding-top:1px;
 	margin: 10px 50px;
 	border-radius: 20px;
@@ -308,20 +261,6 @@ body {
 	margin: 10px 7px 50px;
 	background-color: white;
 }
-
-#right {
-	float: right;
-	margin-right: 30px
-}
-
-.box2 {
-	width:230px;
-	height:250px;
-	display: inline-table;
-	margin: 10px 7px 50px;
-	background-color: white;
-}
-
 .picture {
 	margin: 10px 0px 0px 0px;
 	width:230px;
@@ -376,7 +315,6 @@ body {
 	padding: 30px;
 	border: 2px solid black;
 	background-color: rgb(14, 69, 122);
-	color:white;
 }
 
 .suggestBox a {
@@ -415,6 +353,7 @@ footer {
 	text-align:center;
 	border-radius: 20px;
 }
+
 
 
 .dropmenu li a:hover{
@@ -472,6 +411,200 @@ footer {
 	clear:left;
 }
 
+.mainbox{
+	width:300px;
+	height:360px;
+	display: inline-table;
+	margin: 20px 13px 40px;
+	background-color: white;
+}
+
+.mainpicture {
+	margin: 20px 0px 50px 0px;
+	width:260px;
+	height:200px;
+	display: inline-block;
+	text-decoration: none;
+	border: solid 5px;
+	border-color: rgb(200,200,200);
+}
+
+.mainpicture img{
+	width:100%;
+	height:100%;
+}
+
+.pannel {
+    position: relative;
+    display: inline-block;
+    float: left; 
+}
+	
+.dropbtn {
+    border: none;
+    width: 100px; 
+    height: 50px; 
+    line-height: 50px; 
+    background-color: rgb(146, 255, 227); 
+    border-radius: 20px;
+    text-decoration: none;
+    margin: 0px 10px;
+    font-size: 12px;
+}
+
+.pannel:hover .dropbtn {
+    background-color: rgb(242,201,109);
+}
+
+.pannel:hover #font1{
+	color:white;
+}
+
+.pannel:hover .dropdown {
+    display: block;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    right: 20px;
+    background-color: #f9f9f9;
+    min-width: 80px;
+    border-radius:10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown a {
+	font-size:12px;
+    color: black;
+    padding: 10px 10px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover span{
+	background: linear-gradient(to top, rgb(185,255,255) 40%, transparent 50%);
+}
+
+#font1{
+	font-size: 16px;
+	font-weight: bold;
+	color: rgb(100,100,100);
+}
+
+.subdropmenu{
+	float: left; 
+	width: 750px; 
+	height: 80px; 
+	line-height: 18px;
+	padding: 5px 0 5px 0; 
+	background-color: rgb(123,161,181); 
+	border-radius: 20px;
+	margin: 0px 5px;
+	font: "sans-serif";
+	font-size:18px;
+	
+}
+
+.subdropmenu ul{
+	height:30px;
+	list-style:none;
+	margin: 5px;
+	padding: 0;
+	border-radius: 20px;
+}
+
+.subdropmenu li{
+	display:inline-block;	
+	height: 40px;
+	margin:0;
+	padding:0;
+}
+
+.subdropmenu li a{
+	color:#fff;
+	text-decoration:none;
+	display:inline-block;
+	margin:10px 0px 10px;
+	padding:0px 25px 10px;
+	text-align:center;
+	border-radius: 20px;
+}
+
+.subdropmenu li a:hover{
+	font-weight: bolder;
+}
+
+.subdropmenu ul li:hover a{
+	text-decoration:none;
+	font-weight: bolder;
+}
+
+.subdropmenu li ul{
+	background: rgb(139, 208, 241); 
+	display:none; 
+	height:2em;
+	border:0px;
+	position:absolute;
+	width:755px;
+	z-index:0;
+	top:98px;
+	left:0;
+	margin-left: 125px;
+}
+
+.subdropmenu li:hover ul{
+	display:inline-block;
+
+}
+
+.subdropmenu li li {
+	display:inline-block;
+	width: 120px;
+}
+
+.subdropmenu li:hover li a{
+	display:inline-block;
+
+}
+
+.subdropmenu li ul a{
+	display:inline-block;
+	height:30px;
+	font-size:14px;
+	text-align:left;
+}
+
+.subdropmenu li ul a:hover, .dropmenu li ul li:hover a{
+	display:inline-block;
+	color:#FC0;	
+	font-weight: bolder;
+}
+
+.subdropmenu p{
+	clear:left;
+}
+
+.subdropmenu span{
+	font-weight: 900;
+}
+
+.subdropbtn {
+    border: none;
+    width: 100px; 
+    height: 90px; 
+    line-height: 50px; 
+    background-color: rgb(146, 255, 227); 
+    border-radius: 20px;
+    text-decoration: none;
+    margin: 0px 10px;
+    font-size: 12px;
+}
+
+.pannel:hover .subdropbtn {
+    background-color: rgb(242,201,109);
+}
 
 #modal_btn {
     width: 50px;
