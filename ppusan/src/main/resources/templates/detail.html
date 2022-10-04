@@ -88,7 +88,6 @@
             </div>
             
             <th:text th:each="board : ${boards}">
-            <a href="#content">
                <div class="box" th:contentId="${board.contentId}" th:onclick="showDetail(this.getAttribute('contentId'))">
                   <div class="picture">
                      <img th:unless="${board.image}==null" th:src="${board.image}">
@@ -97,7 +96,6 @@
                   <div class="place">[[${board.title}]]</div>
                   <div class="address">[[${board.addr}]]</div>
                </div>
-               </a>
             </th:text>
                                                                                                       
          </article>
