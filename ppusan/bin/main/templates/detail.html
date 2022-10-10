@@ -13,27 +13,43 @@
    });
    
    function showDetail(contentId){
-	   alert(contentId);
-	   $.getJSON('http://apis.data.go.kr/B551011/KorService/detailCommon?ServiceKey=XR5hyBkBHwkX3CFe3R0BIXVKLgGVbcua5FmQ1I27XP0mipS3EpACc9U%2FRnH2U19EH7nA5kIHkaYKu1MVSAPIxg%3D%3D&contentId=' + contentId + '&MobileOS=ETC&MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json', function(result) {
-		   var overview = result.response.body.items.item["0"].overview;
-		   var title = result.response.body.items.item["0"].title;
-		   var firstimage = result.response.body.items.item["0"].firstimage;
-		   var addr1 = result.response.body.items.item["0"].addr1;
-		   var addr2 = result.response.body.items.item["0"].addr2;
-		   var addr = addr1 + addr2;
-		   var mapx = result.response.body.items.item["0"].mapx;
-		   var mapy = result.response.body.items.item["0"].mapy;
-		   var detail = {
-			   title:title,
-			   overview:overview,
-			   firstimage:firstimage,
-			   addr:addr,
-			   mapx:mapx,
-			   mapy:mapy
-		   };
-			   
+	   $.getJSON('http://apis.data.go.kr/B551011/KorService/detailCommon?ServiceKey='+
+			   'XR5hyBkBHwkX3CFe3R0BIXVKLgGVbcua5FmQ1I27XP0mipS3EpACc9U%2FRnH2U19EH7n'+
+			   'A5kIHkaYKu1MVSAPIxg%3D%3D&contentId=' + contentId + '&MobileOS=ETC&'+
+			   'MobileApp=AppTest&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y'+
+			   '&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y&_type=json', 
+			function(result) {
+		   		var overview = result.response.body.items.item["0"].overview;
+		  		var title = result.response.body.items.item["0"].title;
+		  		var firstimage = result.response.body.items.item["0"].firstimage;
+		 		var addr1 = result.response.body.items.item["0"].addr1;
+		   		var addr2 = result.response.body.items.item["0"].addr2;
+		   		var addr = addr1 + addr2;
+		   		var mapx = result.response.body.items.item["0"].mapx;
+		   		var mapy = result.response.body.items.item["0"].mapy;
+		   		var detail = {
+			   		title:title,
+			   		overview:overview,
+			   		firstimage:firstimage,
+			   		addr:addr,
+			   		mapx:mapx,
+			   		mapy:mapy
+		   		};
 		   modalOpen(detail);
 	   });
+	   
+	   function boardLike(contentId){
+		   alert("실행");
+		   $.ajax({
+				url:"/board/boardLike",
+				data: {"contentId" : contentId},
+				success: function(result, success, xhr){
+				alert(result);
+				location.reload();
+				}
+			});
+			   
+	   }
    }
 </script> 
 
@@ -93,8 +109,17 @@
                      <img th:unless="${board.image}==null" th:src="${board.image}">
                      <img th:if="${board.image}==null" src="https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg" height="150px">
                   </div>
+                  <div class="pladdr">
                   <div class="place">[[${board.title}]]</div>
                   <div class="address">[[${board.addr}]]</div>
+                  </div>
+                  <div class="boardLike">
+                  	<a th:href="|/board/boardLike?contentId=${board.contentId}&category=${category}&page=${navi.currentPage}&sigungu=${sigungu}|" th:checkLike="${board.contentId}">
+                  		<img th:if="${board.checkLike}=='no'" class='grey' src='/image/heart.png'>
+                  		<img th:unless="${board.checkLike}=='no'" class='pink' src='/image/heart.png'>
+                  	</a>
+                  	[[${board.likeCount}]]	
+                  </div>
                </div>
             </th:text>
                                                                                                       

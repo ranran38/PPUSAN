@@ -41,6 +41,15 @@
 			str += "   </div>";
 			str += "   <div class='place'><span>"+ obj.title +"</span></div>";
 			str += "   <div class='address'><span>"+ obj.addr +"</span></div>";
+			str += "   <div class='like'>";	
+			console.log(obj.contentId);
+			str += "<a href='/board/like?contentId=" + obj.contentId + "'>";
+			if(obj.checkLike=="no"){
+				str += "<img class='grey' src='/image/heart.png'>"
+			}else if(obj.checkLike=="yes"){
+				str += "<img class='pink' src='/image/heart.png'>"
+			}
+			str += "    </a><span>"+ obj.likeCount + "</span></div>";
 			str += " </div>";
 		});
 		$("#showSpotlight").append(str);

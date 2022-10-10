@@ -29,6 +29,24 @@
 	)
 </insert>
 
+<insert id="addLike" parameterType="hashmap">
+	insert into likeboard(
+		contentId,
+		memberId
+	) values(
+		#{contentId},	
+		#{memberId}
+	)
+</insert>
+
+<delete id="cancelLike" parameterType="hashmap">
+	delete from likeboard where contentId=#{contentId} and memberId=#{memberId}
+</delete>
+
+<delete id="deleteAllBoards">
+	delete from board
+</delete>
+
 <select id="getTotal" resultType="int" parameterType="string">
 	select count(*) from board where contentTypeId=#{contentTypeId}
 </select>
@@ -53,4 +71,20 @@
 <select id="findSpotlight" resultType="board">
 	select * from board order by hit desc
 </select>
+
+<select id="checkLike" resultType="int" parameterType="hashmap">
+	select count(*) from likeboard 
+		where 
+			contentId=#{contentId} 
+			and memberId=#{memberId}
+</select>
+
+<select id="findBoard" resultType="board" parameterType="string">
+	select * from board where contentId=#{contentId}
+</select>
+
+<update id="updateLikeCount" parameterType="board">
+	update board set likeCount=#{likeCount} where contentId=#{contentId}
+</update>
+
 </mapper>

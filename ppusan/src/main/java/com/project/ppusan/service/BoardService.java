@@ -20,6 +20,7 @@ public class BoardService {
 	private final BoardMapper boardMapper;
 	
 	public void insertBoard(Board board) {
+		boardMapper.deleteAllBoards();
 		boardMapper.insertBoard(board);
 	}
 	
@@ -48,5 +49,23 @@ public class BoardService {
 		System.out.println("offset:"+offset+",limit:"+limit);
 		RowBounds rb = new RowBounds(offset, limit);
 		return boardMapper.findSpotlight(rb);
+	}
+	
+	public int checkLike(HashMap<String,String> map) {
+		return boardMapper.checkLike(map);
+	}
+	
+	public void cancelLike(HashMap<String,String> map) {
+		Board board = boardMapper.findBoard(map.get("contentId"));
+		board.setLikeCount(board.getLikeCount()-1);
+		boardMapper.updateLikeCount(board);
+		boardMapper.cancelLike(map);
+	}
+	
+	public void addLike(HashMap<String,String> map) {
+		Board board = boardMapper.findBoard(map.get("contentId"));
+		board.setLikeCount(board.getLikeCount()+1);
+		boardMapper.updateLikeCount(board);
+		boardMapper.addLike(map);
 	}
 }

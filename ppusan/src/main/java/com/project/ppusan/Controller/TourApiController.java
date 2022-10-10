@@ -7,11 +7,13 @@ import java.net.URL;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.ppusan.domain.Board;
+import com.project.ppusan.security.UserInfo;
 import com.project.ppusan.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,7 +28,12 @@ public class TourApiController {
 	final BoardService boardService;
 	
 	@GetMapping("/getApi")
-	public String getApi() {
+	public String getApi(@AuthenticationPrincipal UserInfo user) {
+		if(user==null) {
+			return "redirect:/";
+		}else if(!user.getMember().getRole().equals("ROLE_MANAGER")) {
+			return "redirect:/";
+		}
 		return "api/getApi";
 	}
 	
@@ -37,11 +44,13 @@ public class TourApiController {
 		
 		try {
 			String numOfRows = "1500";
-			URL url = new URL("http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=" + numOfRows + "&pageNo=&MobileOS=ETC&MobileApp=AppTest&ServiceKey=XR5hyBkBHwkX3CFe3R0BIXVKLgGVbcua5FmQ1I27XP0mipS3EpACc9U%2FRnH2U19EH7nA5kIHkaYKu1MVSAPIxg%3D%3D&listYN=Y&arrange=A&contentTypeId=&areaCode=6&sigunguCode=&cat1=&cat2=&cat3=&_type=json");
+			URL url = new URL("http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=" 
+					+ numOfRows + "&pageNo=&MobileOS=ETC&MobileApp=AppTest&ServiceKey="
+							+ "XR5hyBkBHwkX3CFe3R0BIXVKLgGVbcua5FmQ1I27XP0mipS3EpACc9U%2FRnH2U19EH7nA5kIHkaYKu1MVSAPIxg%3D%3D"
+							+ "&listYN=Y&arrange=A&contentTypeId=&areaCode=6&sigunguCode=&cat1=&cat2=&cat3=&_type=json");
 			BufferedReader bf;
 			bf = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
 			result = bf.readLine();
-//			log.info("{}",result);
 			
 			JSONParser parser = new JSONParser();
 			JSONObject objResult = (JSONObject)parser.parse(result);
@@ -49,8 +58,6 @@ public class TourApiController {
 			JSONObject objBody = (JSONObject)objResponse.get("body");
 			JSONObject objItems = (JSONObject)objBody.get("items");
 			JSONArray arrItem = (JSONArray)objItems.get("item");
-			
-//			log.info("items : {}", arrItem);
 			
 			if(arrItem.size() > 0) {
 				for(int i = 0; i < arrItem.size(); i++){
@@ -69,7 +76,7 @@ public class TourApiController {
 					String addr = (String)tmp.get("addr1") + (String)tmp.get("addr2");
 					Board board = new Board((String)tmp.get("contentid"), (long)tmp.get("readcount"), 0L, contentTypeId,
 							sigungu, addr, (String)tmp.get("firstimage"), (String)tmp.get("mapx"), (String)tmp.get("mapy"),
-							(String)tmp.get("title"));
+							(String)tmp.get("title"), "no");
 					boardService.insertBoard(board);
 				}
 				

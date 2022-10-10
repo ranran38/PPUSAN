@@ -107,7 +107,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 </script>
 </head>
 <body>
- <span th:onclick="|location.href='/'|"><img id="joinImgMain" src="..\image\ppusan.png"></span>
+ <span th:onclick="|location.href='/'|"><img id="joinImgMain" src="..\image\ppusan2.png"></span>
 	<form id="joinForm" th:action="@{/member/join}" method="post">
 	<br>
 	<div id="joinImg"><img id="joinImg" src="..\image\ppusan_Join&login_log.png"/></div>
@@ -119,7 +119,6 @@ window.addEventListener('DOMContentLoaded', (event) => {
 			<tr id="member">
 				<td id="memberid"><label for="id">ID</label></td>
 				<td><input type="text" name="memberId" id="memberId"></td>
-				<td><button type="button" id="idConfirm"></button></td>
 			</tr>
 			<tr><td></td><td>&nbsp;<span id="memberIdValidation"></span><td></tr>
 			<tr>
