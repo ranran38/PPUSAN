@@ -29,12 +29,16 @@
          
           <table id="likelist">
           	<tr>
-          		<th>조회수</th>
           		<th>장소명</th>
+          		<th>주소</th>
+          		<th>조회수</th>
+          		<th>좋아요수</th>
           	</tr>
             <tr th:each="list : ${list}">
-                    <td th:class="center" th:text="${list.board.hit}"></td>
                     <td th:class="center" th:text="${list.board.title}"></td>
+                    <td th:class="center" th:text="${list.board.addr}"></td>
+                    <td th:class="center" th:text="${list.board.hit}"></td>
+                    <td th:class="center" th:text="${list.board.likeCount}"></td>
                 </tr>
         </table>
 				
