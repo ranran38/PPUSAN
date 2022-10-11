@@ -41,7 +41,7 @@ public class MemberController {
     public String join(Member member) {
 //      log.info("member : {}", formData);
        member.setPassword(bCryptPasswordEncoder.encode(member.getPassword()));
-        member.setMemberId(member.getMemberId() + "@" + member.getEmailAddress());
+        member.setMemberId(member.getMemberId());
        memberService.insertMember(member);
        return "redirect:/";
     }
