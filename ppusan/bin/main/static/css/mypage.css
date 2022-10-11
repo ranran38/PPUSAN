@@ -86,15 +86,17 @@ body {
     }
     
 #mypageMenu {
-	list-style-type: none;
 	padding: 0px;
 	margin: 20px;
 	width: 150px;
 	background: rgb(241, 255, 254);
 	height: 50%;
 	overflow: auto;
-	position: fixed;
+	position:absolute;
 	border-radius: 20px;
+	color: rgb(14, 69, 122);
+	font-weight: bold;
+	font-style: italic;
 }
 
 #mypageMenu li a {
@@ -107,7 +109,7 @@ body {
 
 #mypageMenu li a:hover {
   font-weight: bolder;
-  color: #004080;
+  color: rgb(242,201,109);
 }
 
 #mypagecon {
@@ -118,9 +120,35 @@ body {
 }
 
 #updateform {
-	color: black;
-	margin-left: 300px;
-	padding: 10%;
+	color: white;
+	text-align: center;
+	text-shadow: 2px 4px 2px gray;
+	font-size: 1em;
+	margin: 50px 30% 80px;
+	padding: 30px;
+	background: #a6a19c;
+	height: 50%;
+	width: 35%;
+	line-height: 30px;
+    border-radius: 45px;
+    font-weight: bold;
+}
+
+#updateBtn{
+	background-color: #ffffff;
+	font-size: 1em;
+	font-weight: bold;
+	margin: 10px auto;
+	color: #a6a19c;
+	width: 100px;
+	height: 30px;
+	border-radius: 15px;
+	font-weight: bold;
+	border: white;
+}
+
+#updateBtn:hover{
+	background-color: rgb(242,201,109);
 }
     
 #content {
@@ -555,9 +583,24 @@ footer {
 }
 
 #likelist {
-	color: black;
-	text-align:center;
-	width: 300px;
-	margin:150px 35%;
+	color: white;
+	text-align: center;
+	font-size: 1em;
+	background: #a6a19c;
+	width: 80%;
+	height: 30%;
+	margin: 25px 18%;
+	border-style: solid;
+	border-collapse: collapse;
 }
  
+.likeRow th {
+	border-style: solid;
+	border-color: #eee;
+	background-color: white;
+	color: #a6a19c;
+}
+.likeRow td {
+	border-style: solid;
+	border-color: #eee;
+}
