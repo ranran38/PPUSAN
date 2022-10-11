@@ -72,6 +72,21 @@
 	select * from board order by hit desc
 </select>
 
+<select id="checkLike" resultType="int" parameterType="hashmap">
+   select count(*) from likeboard 
+      where 
+         contentId=#{contentId} 
+         and memberId=#{memberId}
+</select>
+
+<select id="findBoard" resultType="board" parameterType="string">
+   select * from board where contentId=#{contentId}
+</select>
+
+<update id="updateLikeCount" parameterType="board">
+   update board set likeCount=#{likeCount} where contentId=#{contentId}
+</update>
+
 
 <resultMap type="com.project.ppusan.domain.Board" id="boardMap">
 	<id property="contentId" column="contentId" />
@@ -111,6 +126,5 @@
 		AND		l.memberId = m.memberId
 		AND		l.memberId = #{memberId}
 </select>
->>>>>>> refs/heads/main02
 
 </mapper>

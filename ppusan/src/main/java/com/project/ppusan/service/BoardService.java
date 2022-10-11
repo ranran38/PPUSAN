@@ -52,5 +52,26 @@ public class BoardService {
 		return boardMapper.findSpotlight(rb);
 	}
 	
+	public int checkLike(HashMap<String,String> map) {
+	      return boardMapper.checkLike(map);
+	   }
+	   
+	   public void cancelLike(HashMap<String,String> map) {
+	      Board board = boardMapper.findBoard(map.get("contentId"));
+	      board.setLikeCount(board.getLikeCount()-1);
+	      boardMapper.updateLikeCount(board);
+	      boardMapper.cancelLike(map);
+	   }
+	   
+	   public void addLike(HashMap<String,String> map) {
+	      Board board = boardMapper.findBoard(map.get("contentId"));
+	      board.setLikeCount(board.getLikeCount()+1);
+	      boardMapper.updateLikeCount(board);
+	      boardMapper.addLike(map);
+	   }
+	   
+	   public List<Likelist> findLikeList(String memberId) {
+		      return boardMapper.findLikeList(memberId);
+	   }
 
 }
