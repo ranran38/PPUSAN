@@ -42,7 +42,10 @@ input > #loginButton{
 }
 
 #loginImgMain{
+	height:150px;
 	float: left;
+	margin-top: 40px;
+	margin-left:200px;
 	image-rendering:-webkit-optimize-contrast;
 }
 

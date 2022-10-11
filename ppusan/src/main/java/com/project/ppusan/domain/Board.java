@@ -22,4 +22,5 @@ public class Board {
 	String x;				//mapx
 	String y;				//mapy
 	String title;			//title
+	String checkLike;		//like유무(yes:좋아요함 no:좋아요안함)
 }

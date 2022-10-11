@@ -29,6 +29,24 @@
 	)
 </insert>
 
+<insert id="addLike" parameterType="hashmap">
+	insert into likeboard(
+		contentId,
+		memberId
+	) values(
+		#{contentId},	
+		#{memberId}
+	)
+</insert>
+
+<delete id="cancelLike" parameterType="hashmap">
+	delete from likeboard where contentId=#{contentId} and memberId=#{memberId}
+</delete>
+
+<delete id="deleteAllBoards">
+	delete from board
+</delete>
+
 <select id="getTotal" resultType="int" parameterType="string">
 	select count(*) from board where contentTypeId=#{contentTypeId}
 </select>
@@ -53,6 +71,7 @@
 <select id="findSpotlight" resultType="board">
 	select * from board order by hit desc
 </select>
+
 
 <resultMap type="com.project.ppusan.domain.Board" id="boardMap">
 	<id property="contentId" column="contentId" />
@@ -92,5 +111,6 @@
 		AND		l.memberId = m.memberId
 		AND		l.memberId = #{memberId}
 </select>
+>>>>>>> refs/heads/main02
 
 </mapper>

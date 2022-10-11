@@ -21,6 +21,7 @@ public class BoardService {
 	private final BoardMapper boardMapper;
 	
 	public void insertBoard(Board board) {
+		boardMapper.deleteAllBoards();
 		boardMapper.insertBoard(board);
 	}
 	
@@ -51,7 +52,5 @@ public class BoardService {
 		return boardMapper.findSpotlight(rb);
 	}
 	
-	public List<Likelist> findLikeList(String memberId) {
-		return boardMapper.findLikeList(memberId);
-	}
+
 }
