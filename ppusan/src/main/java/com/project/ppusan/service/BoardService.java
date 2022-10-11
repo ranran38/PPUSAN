@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.ppusan.domain.Board;
+import com.project.ppusan.domain.Likelist;
 import com.project.ppusan.mapper.BoardMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -51,21 +52,5 @@ public class BoardService {
 		return boardMapper.findSpotlight(rb);
 	}
 	
-	public int checkLike(HashMap<String,String> map) {
-		return boardMapper.checkLike(map);
-	}
-	
-	public void cancelLike(HashMap<String,String> map) {
-		Board board = boardMapper.findBoard(map.get("contentId"));
-		board.setLikeCount(board.getLikeCount()-1);
-		boardMapper.updateLikeCount(board);
-		boardMapper.cancelLike(map);
-	}
-	
-	public void addLike(HashMap<String,String> map) {
-		Board board = boardMapper.findBoard(map.get("contentId"));
-		board.setLikeCount(board.getLikeCount()+1);
-		boardMapper.updateLikeCount(board);
-		boardMapper.addLike(map);
-	}
+
 }

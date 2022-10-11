@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
 import com.project.ppusan.domain.Board;
+import com.project.ppusan.domain.Likelist;
 
 /**
  * 게시판 관련 매퍼
@@ -19,10 +20,14 @@ public interface BoardMapper {
 	public List<Board> findBoardsByContentTypeId(String contentTypeId, RowBounds rb);
 	public List<Board> findBoardsBySigunguCode(HashMap<String,String> map, RowBounds rb);
 	public List<Board> findSpotlight(RowBounds rb);
+<<<<<<< HEAD
 	public int checkLike(HashMap<String,String> map);
 	public void cancelLike(HashMap<String,String> map);
 	public void addLike(HashMap<String,String> map);
 	public void updateLikeCount(Board board);
 	public Board findBoard(String contentId);
 	public void deleteAllBoards();
+=======
+	public List<Likelist> findLikeList(String memberId);
+>>>>>>> refs/heads/main02
 }

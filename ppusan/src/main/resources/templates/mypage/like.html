@@ -16,7 +16,6 @@
   <div id="wrap">
   	<div id="header"></div>
     <div id="content">
-		<section>
 			<ul id="mypageMenu">
 				<li><p>MyPage</p></li>
 		   	 	<li><a href="/mypage/update">개인정보</a></li>
@@ -25,34 +24,23 @@
 			  	<li><a href="/mypage/planner">- 플랜 작성</a></li>
 			  	<li><a href="/mypage/plannerDetail">- 플랜 상세</a></li>
 			</ul>
+		<section>
 			
-			<!-- <article id="mypagecon">
-				<h2>좋아요한 게시물 목록</h2>
-			</article> -->
-			
-			
-				<h2 id="mypagetitle">좋아요한 게시물 목록</h2>
-				<div id="right">
-				<div class="box2"><a href="#"></a>
-					<div class="picture"><a href="#"></a></div>
-					<div class="place"><a href="#">장소명</a></div>
-					<div class="address"><a href="#">주소</a></div>
-				</div>
-				<div class="box2"><a href="#"></a>
-					<div class="picture"><a href="#"></a></div>
-					<div class="place"><a href="#">장소명</a></div>
-					<div class="address"><a href="#">주소</a></div>
-				</div>
-				<div class="box2"><a href="#"></a>
-					<div class="picture"><a href="#"></a></div>
-					<div class="place"><a href="#">장소명</a></div>
-					<div class="address"><a href="#">주소</a></div>
-				</div>
-				</div>		
-				<div>
-					<a href="#"><img src="/image/left-arrow.png" id="left-arrow"></a>
-					<a href="#"><img src="/image/right-arrow.png" id="right-arrow"></a>
-				</div>
+         
+          <table id="likelist">
+          	<tr>
+          		<th>장소명</th>
+          		<th>주소</th>
+          		<th>조회수</th>
+          		<th>좋아요수</th>
+          	</tr>
+            <tr th:each="list : ${list}">
+                    <td th:class="center" th:text="${list.board.title}"></td>
+                    <td th:class="center" th:text="${list.board.addr}"></td>
+                    <td th:class="center" th:text="${list.board.hit}"></td>
+                    <td th:class="center" th:text="${list.board.likeCount}"></td>
+                </tr>
+        </table>
 				
 		</section>	
     <footer>
