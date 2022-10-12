@@ -29,12 +29,14 @@
          
           <table id="likelist">
           	<tr class="likeRow">
+          		<th>No.</th>
           		<th>장소명</th>
           		<th>주소</th>
           		<th>조회수</th>
           		<th>좋아요수</th>
           	</tr>
-            <tr class="likeRow" th:each="list : ${list}">
+            <tr class="likeRow" th:each="list, listStat : ${list}">
+            		<td th:class="center" th:text="${listStat.count}"></td>
                     <td th:class="center" th:text="${list.board.title}"></td>
                     <td th:class="center" th:text="${list.board.addr}"></td>
                     <td th:class="center" th:text="${list.board.hit}"></td>
