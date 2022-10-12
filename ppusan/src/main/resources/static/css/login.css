@@ -49,6 +49,11 @@ input > #loginButton{
 	image-rendering:-webkit-optimize-contrast;
 }
 
+#loginImgMain:hover {
+	opacity: 0.7;
+	cursor: pointer;
+}
+
 #loginImg{ 
 	height: 200px;
 	width: 500px;
