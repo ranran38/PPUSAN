@@ -14,6 +14,10 @@ body {
 	padding: 2em;
 }
 
+.upperbtn :hover{
+	opacity: 0.7;
+}
+
 #wrap {
 	width: 1000px; 
 	margin: 0 auto;
@@ -52,11 +56,16 @@ body {
 	border-radius: 20px;
 	text-decoration: none;
 	background-image: url("/image/ppusan2.png");
-	background-size: 140px;
+	background-size: 130px;
 	background-position: center;
 	background-repeat: no-repeat;
 	background: cover;
-	margin: 0px 5px;
+	margin: -10px 5px;
+	filter: drop-shadow(5px 5px 5px #2e9cdf); 
+}
+
+#ppusan:hover {
+	opacity: 0.7;
 }
 	
 .dropmenu{
@@ -113,6 +122,20 @@ body {
 	text-decoration: none;
 }
 
+.mainbox:hover {
+	background-color: #2e9cdf;
+	font-weight: bolder;
+	text-transform: capitalize;
+	cursor: pointer;
+}
+
+.box:hover {
+	background-color: #2e9cdf;
+	font-weight: bolder;
+	text-transform: capitalize;
+	cursor: pointer;
+}
+
 .aboutPpusan {
 	margin: 15px 0px 30px;
 	border-radius: 20px;
@@ -127,16 +150,11 @@ body {
 	border-radius: 20px;
 	cursor: pointer;
 }
-.aboutPpusan:focus {
+.aboutPpusan:hover {
 	background-color: #ED9C3B;
 	font-weight: bolder;
 	text-transform: capitalize;
 }
-
-.heartBtn {
-	
-}
-
 
 #spotlight {
 	color: rgb(0, 128, 255);
@@ -215,7 +233,9 @@ body {
 .pagination a {
 	display: inline-block;
 	text-decoration: none;
-	padding: 10px;
+	padding: 5px 5px;
+	margin: 10px 0px;
+	width: 1.3em;
 	color: white;
 }
 
@@ -229,15 +249,16 @@ body {
 }
 
 .pagination a:hover {
-	margin-left: 3px;
-	padding: 0;
-	width: 30px;
-	height: 30px;
-	line-height: 30px;
 	border-radius: 100%;
 	background-color: #2e9cdf;
+	opacity: 0.7;
 	color: #ffffff;
+}
 
+.arrow :hover {
+	opacity: 0.7;
+	display: inline-block;
+	height: 2em;
 }
 
 .pagination a:active {
@@ -339,6 +360,7 @@ body {
 #left-arrow, #right-arrow {
 	margin: 0px 10px 50px;
 	width: 2em;
+	
 }
 
 #content3 {

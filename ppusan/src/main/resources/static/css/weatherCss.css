@@ -119,3 +119,8 @@ th {
 	margin-bottom: 600px;
 	image-rendering:-webkit-optimize-contrast;
 }
+
+#loginImgMain:hover {
+	opacity: 0.7;
+	cursor: pointer;
+}
