@@ -21,8 +21,11 @@ public class BoardService {
 	private final BoardMapper boardMapper;
 	
 	public void insertBoard(Board board) {
-		boardMapper.deleteAllBoards();
 		boardMapper.insertBoard(board);
+	}
+	
+	public void deleteAllBoards() {
+		boardMapper.deleteAllBoards();
 	}
 	
 	//카테고리별 총계

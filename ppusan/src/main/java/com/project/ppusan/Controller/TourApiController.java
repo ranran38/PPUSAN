@@ -41,7 +41,7 @@ public class TourApiController {
 	@GetMapping("/responseApi")
 	public String responseApi() {
 		String result = "";
-		
+		boardService.deleteAllBoards();
 		try {
 			String numOfRows = "1500";
 			URL url = new URL("http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=" 
